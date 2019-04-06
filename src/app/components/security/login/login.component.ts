@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent {
 
   private email: string;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService, private toastr: ToastrService) { 
     
   }
 
@@ -26,16 +27,24 @@ export class LoginComponent {
 
   onLogin(form: NgForm){
     const email = form.value.email;
+
+    if(!email){
+      this.toastr.error('','Debes introducir un email.',{
+        timeOut: 3000
+      });
+    }
     console.log(email);
 
     const password = form.value.password;
     this.authService.login(email, password).then(_=>{
       form.reset();
       this.email = email;
+
     }).catch(err=>{
       console.log(err);
     });
   }
+
 
 
 }

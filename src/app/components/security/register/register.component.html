@@ -1,166 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-  <style type="text/css">
-    body {
-      color: #fff;
-      background: #7ba3db;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .form-control {
-      height: 40px;
-      box-shadow: none;
-      color: #969fa4;
-    }
-
-    .form-control:focus {
-      border-color: #5cb85c;
-    }
-
-    .form-control,
-    .btn {
-      border-radius: 3px;
-    }
-
-    .signup-form {
-      width: 400px;
-      margin: 0 auto;
-      padding: 30px 0;
-    }
-
-    .signup-form h2 {
-      color: #636363;
-      margin: 0 0 15px;
-      position: relative;
-      text-align: center;
-    }
-
-    .signup-form h2:before,
-    .signup-form h2:after {
-      content: "";
-      height: 2px;
-      width: 30%;
-      background: #d4d4d4;
-      position: relative;
-      top: 50%;
-      z-index: 2;
-    }
-
-    .signup-form h2:before {
-      left: 0;
-    }
-
-    .signup-form h2:after {
-      right: 0;
-    }
-
-    .signup-form .hint-text {
-      color: #999;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .signup-form form {
-      color: #999;
-      border-radius: 3px;
-      margin-bottom: 15px;
-      background: #f2f3f7;
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-      padding: 30px;
-    }
-
-    .signup-form .form-group {
-      margin-bottom: 20px;
-    }
-
-    .signup-form input[type="checkbox"] {
-      margin-top: 3px;
-    }
-
-    .signup-form .btn {
-      font-size: 16px;
-      font-weight: bold;
-      min-width: 140px;
-      outline: none !important;
-    }
-
-    .signup-form .row div:first-child {
-      padding-right: 10px;
-    }
-
-    .signup-form .row div:last-child {
-      padding-left: 10px;
-    }
-
-    .signup-form a {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    .signup-form a:hover {
-      text-decoration: none;
-    }
-
-    .signup-form form a {
-      color: #5cb85c;
-      text-decoration: none;
-    }
-
-    .signup-form form a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 
-<body>
-  <div class="signup-form">
-    <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-      <h2>Sing up to <br><b>ACME-Explorer</b></h2>
-      <p class="hint-text">Create your account. <br>It's free and you can enjoy a lot of deals.</p>
-      <div class="form-group has-danger">
-        <label for="role" class="form-control-label">Role:</label>
-        <select id="role" class="form-control" formControlName="role">
-          <option *ngFor="let role of roleList" [value]="role">
-            {{role}}
-          </option>
-        </select>
-      </div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="register_card">
+      <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+        <h2 style="text-align: center;">Sing up to <br><b>ACME-Explorer</b></h2>
+        <p style="text-align: center;">Create your account. <br>It's free and you can enjoy a lot of deals.</p>
+        <div class="form-group has-danger">
+          <label for="role" class="form-control-label">Role:</label>
+          <select id="role" class="form-control" formControlName="role">
+            <option *ngFor="let role of roleList" [value]="role">
+              {{role}}
+            </option>
+          </select>
+        </div>
 
-      <!--Name-->
-      <div class="form-group">
-        <div class="col-xs-6">
+        <!--Name-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>face</mat-icon>
+            </span>
+          </div>
           <input type="text" class="form-control" name="name" formControlName="name" placeholder="Name"
             required="required">
         </div>
-      </div>
-      <!--Surname-->
-      <div class="form-group">
-        <div class="col-xs-6">
+        <!--Surname-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>face</mat-icon>
+            </span>
+          </div>
           <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="Surname"
             required="required">
         </div>
-      </div>
-      <!--Email-->
-      <div class="form-group">
-        <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email"
-          required="required">
-      </div>
-      <!--Phone-->
-      <div class="form-group">
-        <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Phone"
-          required="required">
-      </div>
+        <!--Email-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>email</mat-icon>
+            </span>
+          </div>
+          <input type="email" name="email" class="form-control" formControlName="email" placeholder="Email"
+            required="required">
+        </div>
+        <!--Phone-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>phone</mat-icon>
+            </span>
+          </div>
+          <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Phone"
+            required="required">
+        </div>
 
-      <!--Address-->
-      <div class="form-group">
-        <input type="text" class="form-control" name="address" formControlName="address" placeholder="address"
-          required="required">
-      </div>
+        <!--Address-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>home</mat-icon>
+            </span>
+          </div>
+          <input type="text" class="form-control" name="address" formControlName="address" placeholder="Address"
+            required="required">
+        </div>
 
-      <!--Preffered Language-->
-      <div class="form-group has-danger">
+        <!--Preffered Language-->
+        <div class="form-group has-danger">
           <label for="lang" class="form-control-label">Language:</label>
           <select id="lang" class="form-control" formControlName="preferredLanguage">
             <option *ngFor="let lang of langList" [value]="lang">
@@ -169,26 +83,31 @@
           </select>
         </div>
 
-      <!--Password-->
-      <div class="form-group">
-        <input type="password" class="form-control" name="password" formControlName="password" placeholder="password"
-          required="required">
-      </div>
+        <!--Password-->
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>vpn_key</mat-icon>
+            </span>
+          </div>
+          <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password"
+            required="required">
+        </div>
 
-      <div class="form-group">
-        <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of
-            Use</a> &amp; <a href="#">Privacy Policy</a></label>
-      </div>
-      <div class="form-group">
+        <div class="form-group">
+          <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of
+              Use</a> &amp; <a href="#">Privacy Policy</a></label>
+        </div>
+        <div class="form-group d-flex justify-content-center mt-3 login_container">
+          <button type="submit" name="button" class="btn login_btn">Register Now</button>
+        </div>
+        <!-- <div class="form-group">
         <button type="submit" class="btn btn-primary btn-success btn-lg btn-block">Register Now</button>
+      </div> -->
+      </form>
+      <div class="text-center">
+        Already have an account? <a routerLink="/login">Sign In</a>
       </div>
-    </form>
-
-
-    <div class="text-center">
-      Already have an account? <a href="#">Log in</a>
     </div>
   </div>
-</body>
-
-</html>
+</div>

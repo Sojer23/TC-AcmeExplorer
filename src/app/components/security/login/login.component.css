@@ -1,17 +1,15 @@
-	/* Coded with love by Mutiullah Samim */
     body,
     html {
         margin: 0;
         padding: 0;
         height: 100%;
-        background: #60a3bc !important;
     }
     .user_card {
         height: 400px;
         width: 350px;
         margin-top: auto;
-        margin-bottom: auto;
-        background: #f39c12;
+        margin-bottom: 50px;
+        background: #ffffff;
         position: relative;
         display: flex;
         justify-content: center;
@@ -21,30 +19,28 @@
         -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 5px;
-
     }
     .brand_logo_container {
-        position: absolute;
-        height: 170px;
-        width: 170px;
+        height: 150px;
+        width: 150px;
         top: -75px;
         border-radius: 50%;
-        background: #60a3bc;
+        background: #232f3e;
         padding: 10px;
         text-align: center;
     }
     .brand_logo {
-        height: 150px;
-        width: 150px;
+        height: 130px;
+        width: 130px;
         border-radius: 50%;
         border: 2px solid white;
     }
     .form_container {
-        margin-top: 100px;
+        margin-top: 40px;
     }
     .login_btn {
         width: 100%;
-        background: #c0392b !important;
+        background: #febd69 !important;
         color: white !important;
     }
     .login_btn:focus {
@@ -55,7 +51,7 @@
         padding: 0 2rem;
     }
     .input-group-text {
-        background: #c0392b !important;
+        background: #febd69 !important;
         color: white !important;
         border: 0 !important;
         border-radius: 0.25rem 0 0 0.25rem !important;
@@ -66,5 +62,5 @@
         outline: 0px !important;
     }
     .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-        background-color: #c0392b !important;
+        background-color: #febd69 !important;
     }

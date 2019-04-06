@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Actor } from 'src/app/models/actor.model';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -37,5 +38,6 @@ export class HeaderComponent implements OnInit {
       console.log(err);
     });
   }
+
 
 }
