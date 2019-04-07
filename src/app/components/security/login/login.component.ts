@@ -33,7 +33,6 @@ export class LoginComponent {
         timeOut: 3000
       });
     }
-    console.log(email);
 
     const password = form.value.password;
     this.authService.login(email, password).then(_=>{

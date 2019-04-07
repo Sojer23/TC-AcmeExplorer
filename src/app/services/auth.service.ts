@@ -17,7 +17,9 @@ export class AuthService {
 
   private currentActor: Actor;
 
+  //To check if user is logged in
   userLoggedIn = new Subject();
+
   constructor(private fireAuth: AngularFireAuth,
     private http: HttpClient, private toastr: ToastrService,
     private router: Router) {
@@ -27,11 +29,22 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise<any>((res, rej) => {
       this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(data => {
-        console.log(data);
-        this.toastr.success(email, '¡Bienvenido a Acme-Explorer!', {
-          timeOut: 3000
+
+        this.getCurrentActorFromDB(email, password).then(current_actor=>{
+
+          console.log("Current Actor: NAME: "+current_actor.name+". EMAIL: "+current_actor.email);
+          this.currentActor = current_actor;
+          this.userLoggedIn.next(true);
+          this.toastr.success(current_actor.name, '¡Bienvenido a Acme-Explorer!', {
+            timeOut: 3000
+          });
+          this.router.navigate(['/home']);
+          res(current_actor);
+
+        }).catch(err=>{
+          console.log(Date()+": Error in function getCurrentActorFromDB: "+ err);
+          rej(err);
         });
-        res(data);
       }).catch(err => {
         if (err.code == "auth/user-not-found") {
           this.toastr.warning("Registresé para más", 'Usuario no registrado', {
@@ -60,7 +73,10 @@ export class AuthService {
   logout() {
     return new Promise<any>((res, rej) => {
       this.fireAuth.auth.signOut().then(data => {
-        console.log(data);
+        this.toastr.info('','¡Hasta pronto '+this.currentActor.name+'!', {
+          timeOut: 3000
+        });
+        this.router.navigate(['/home']);
         res(data);
       }).catch(err => {
         console.log(err);
@@ -69,33 +85,36 @@ export class AuthService {
     });
   }
 
-  getCurrentActor(){}
-  getCurrentActorFromDB(actor_id) {
-    this.currentActor
-    const url = environment.apiBaseUrl + '/actors';
+  getCurrentActor() {
+    return this.currentActor;
+   }
 
-    const actorId = JSON.stringify(actor_id);
+  getCurrentActorFromDB(email, password) {
+    return new Promise<any>((response, rej) => {
+      const url = environment.apiBaseUrl + '/login';
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      params: new HttpParams().set("paramName", actorId)
-    };
-    this.http.get(url, httpOptions).toPromise().then(res => {
-      console.log(res);
-      this.toastr.success('Ahora inicie sesión', '¡El usuario actual es ', {
-        timeOut: 3000
+      const emailParam = JSON.stringify(email);
+      const passwordParam = JSON.stringify(password);
+  
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        params: new HttpParams().set("email", emailParam).set("password", passwordParam)
+      };
+      this.http.get(url, httpOptions).toPromise().then(actor => {
+  
+        localStorage.setItem('current_actor', JSON.stringify(actor));
+        console.log("User logged in!");
+        
+        response(actor);
+  
+      }, err => {
+        console.log("Error while registration");
+        rej(err);
       });
-
-      console.log("Registration done!");
-      this.router.navigate(['/login']);
-      resolve(res);
-
-    }, err => {
-      console.log("Error while registration");
-      reject(err);
     });
+    
   }
 
   registerUser(actor: Actor) {
