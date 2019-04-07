@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TranslatableComponent } from '../../shared/translatable/translatable.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -9,12 +11,12 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends TranslatableComponent{
 
   private email: string;
 
-  constructor(private authService: AuthService, private toastr: ToastrService) { 
-    
+  constructor(private authService: AuthService, private translateService: TranslateService, private toastr: ToastrService) { 
+    super(translateService);
   }
 
   onLogout(){
@@ -33,7 +35,6 @@ export class LoginComponent {
         timeOut: 3000
       });
     }
-    console.log(email);
 
     const password = form.value.password;
     this.authService.login(email, password).then(_=>{

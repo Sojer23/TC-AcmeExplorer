@@ -14,3 +14,12 @@ button{
     text-decoration-color: #ffff;
     font-weight: bold;
 }
+
+.special-img 
+{
+    margin-right: 10px;
+}
+.navbar-nav>li>a.profile-image {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

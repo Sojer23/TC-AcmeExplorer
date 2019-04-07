@@ -1,0 +1,54 @@
+{
+    "system":{
+        "tittle": "ACME-Explorer"
+    },
+    "actor":{
+        "email": "Correo electrónico"
+    },
+    "security":{
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "loginForm":{
+            "loginRemind":"¿Ya tienes una cuenta?"
+        },
+        "register": "Registrarse",
+        "registerForm": {
+            "registerRemind":"¿Todavía no tienes cuenta?",
+            "registerTerms": "Acepto los Términos de Uso y la Política de Privacidad",
+            "registerLang": "Lenguaje",
+            "registerRole": "Rol",
+            "registerName": "Nombre",
+            "registerSurname": "Apellidos",
+            "registerEmail": "Correo electrónico",
+            "registerPhone": "Teléfono",
+            "registerAddress": "Dirección",
+            "registerPassword": "Contraseña",
+            "registerTittle": "Registrate en",
+            "registerSecondTittle": "¡Crea tu cuenta!",
+            "registerThirdTittle": "Es gratis y podrás disfrutar de muchas ofertas"
+        }
+    },
+    "header":{
+        "regard": "Hola, ",
+        "search": "Buscar",
+        "menu":{
+            "trips": {
+                "main":"Viajes",
+                "first":"Listado de Viajes",
+                "second": "Carga de Viajes",
+                "third": "Nuevo Viaje"
+            }
+        }
+    },
+    "footer":{
+        "dev": "Desarrollado con ❤️ por "
+    },
+    "profile":{
+        "profile": "Perfil"
+    },
+    "deny":{
+        "text1":"¡No hay forma de que ",
+        "text2": " Imma te deje pasar! ",
+        "warning":"Acceso Prohibido."
+    }
+}

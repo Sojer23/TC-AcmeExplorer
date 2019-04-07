@@ -18,8 +18,8 @@ export class ActorRoleGuard implements CanActivate {
       const expectedRole = next.data.expectedRole;
       const currentActor = this.authService.getCurrentActor();
       let result = false;
-      /*if (currentActor) {
-        //const activeRole = new RegExp(currentActor.role.toString(), 'i');
+      if (currentActor) {
+        const activeRole = new RegExp(currentActor.role.toString(), 'i');
         if (expectedRole.search(activeRole) !== -1) {
           result = true;
         } else {
@@ -33,7 +33,7 @@ export class ActorRoleGuard implements CanActivate {
           this.router.navigate(['login'], { queryParams: { returnUrl: state.url } })
         }
         res(result);
-      }*/
+      }
     });
   }
 }
