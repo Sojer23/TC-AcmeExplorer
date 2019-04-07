@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatableComponent } from '../../shared/translatable/translatable.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent extends TranslatableComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translateService: TranslateService) {
+    super(translateService);
+   }
 
   today: number;
   numClients: number;

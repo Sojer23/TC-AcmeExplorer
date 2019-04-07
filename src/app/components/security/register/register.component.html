@@ -10,10 +10,10 @@
   <div class="d-flex justify-content-center h-100">
     <div class="register_card">
       <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-        <h2 style="text-align: center;">Sing up to <br><b>ACME-Explorer</b></h2>
-        <p style="text-align: center;">Create your account. <br>It's free and you can enjoy a lot of deals.</p>
+        <h2 style="text-align: center;">{{ 'security.registerForm.registerTittle' | translate }} <br><b>ACME-Explorer</b></h2>
+        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTittle' | translate }} <br>{{ 'security.registerForm.registerThirdTittle' | translate }}</p>
         <div class="form-group has-danger">
-          <label for="role" class="form-control-label">Role:</label>
+          <label for="role" class="form-control-label">{{ 'security.registerForm.registerRole' | translate }}:</label>
           <select id="role" class="form-control" formControlName="role">
             <option *ngFor="let role of roleList" [value]="role">
               {{role}}
@@ -28,7 +28,7 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="name" formControlName="name" placeholder="Name"
+          <input type="text" class="form-control" name="name" formControlName="name" placeholder="{{ 'security.registerForm.registerName' | translate }}"
             required="required">
         </div>
         <!--Surname-->
@@ -38,7 +38,7 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="Surname"
+          <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="{{ 'security.registerForm.registerSurname' | translate }}"
             required="required">
         </div>
         <!--Email-->
@@ -48,7 +48,7 @@
               <mat-icon>email</mat-icon>
             </span>
           </div>
-          <input type="email" name="email" class="form-control" formControlName="email" placeholder="Email"
+          <input type="email" name="email" class="form-control" formControlName="email" placeholder="{{ 'security.registerForm.registerEmail' | translate }}"
             required="required">
         </div>
         <!--Phone-->
@@ -58,7 +58,7 @@
               <mat-icon>phone</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Phone"
+          <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="{{ 'security.registerForm.registerPhone' | translate }}"
             required="required">
         </div>
 
@@ -69,13 +69,13 @@
               <mat-icon>home</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="address" formControlName="address" placeholder="Address"
+          <input type="text" class="form-control" name="address" formControlName="address" placeholder="{{ 'security.registerForm.registerAddress' | translate }}"
             required="required">
         </div>
 
         <!--Preffered Language-->
         <div class="form-group has-danger">
-          <label for="lang" class="form-control-label">Language:</label>
+          <label for="lang" class="form-control-label">{{ 'security.registerForm.registerLang' | translate }}:</label>
           <select id="lang" class="form-control" formControlName="preferredLanguage">
             <option *ngFor="let lang of langList" [value]="lang">
               {{lang}}
@@ -90,23 +90,22 @@
               <mat-icon>vpn_key</mat-icon>
             </span>
           </div>
-          <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password"
+          <input type="password" class="form-control" name="password" formControlName="password" placeholder="{{ 'security.registerForm.registerPassword' | translate }}"
             required="required">
         </div>
 
         <div class="form-group">
-          <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of
-              Use</a> &amp; <a href="#">Privacy Policy</a></label>
+          <label class="checkbox-inline"><input type="checkbox" required="required">{{ 'security.registerForm.registerTerms' | translate }}</label>
         </div>
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button type="submit" name="button" class="btn login_btn">Register Now</button>
+          <button type="submit" name="button" class="btn login_btn">{{ 'security.register' | translate }}</button>
         </div>
         <!-- <div class="form-group">
         <button type="submit" class="btn btn-primary btn-success btn-lg btn-block">Register Now</button>
       </div> -->
       </form>
       <div class="text-center">
-        Already have an account? <a routerLink="/login">Sign In</a>
+        {{ 'security.loginForm.loginRemind' | translate }} <a routerLink="/login">{{ 'security.login' | translate }}</a>
       </div>
     </div>
   </div>

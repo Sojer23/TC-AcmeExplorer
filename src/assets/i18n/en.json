@@ -1,0 +1,54 @@
+{
+    "system":{
+        "tittle": "ACME-Explorer"
+    },
+    "actor":{
+        "email": "Email"
+    },
+    "security":{
+        "login": "Sign In",
+        "logout": "Sign Out",
+        "loginForm":{
+            "loginRemind":"Do you already have an account?"
+        },
+        "register": "Sign Up",
+        "registerForm": {
+            "registerRemind":"Do not have an account yet?",
+            "registerTerms": "I accept the Terms of Use and the Privacy Policy",
+            "registerLang": "Language",
+            "registerRole": "Role",
+            "registerName": "Name",
+            "registerSurname": "Surname",
+            "registerEmail": "Email",
+            "registerPhone": "Phone",
+            "registerAddress": "Address",
+            "registerPassword": "Password",
+            "registerTittle": "Sign up to",
+            "registerSecondTittle": "Create your account!",
+            "registerThirdTittle": "It's free and you can enjoy a lot of deals"
+        }
+    },
+    "header":{
+        "regard": "Hello, ",
+        "search": "Search",
+        "menu":{
+            "trips": {
+                "main":"Trips",
+                "first":"List Trips",
+                "second": "Load Trips",
+                "third": "New Trip"
+            }
+        }
+    },
+    "footer":{
+        "dev": "Developed with ❤️ by "
+    },
+    "profile":{
+        "profile": "Profile"
+    },
+    "deny":{
+        "text1":"There is no way Immma ",
+        "text2": "let you pass through!",
+        "warning":"Access Forbidden."
+    }
+}
