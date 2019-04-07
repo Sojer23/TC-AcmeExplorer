@@ -141,12 +141,11 @@ export class AuthService {
         const url = environment.apiBaseUrl + '/actors';
         const body = JSON.stringify(actor);
         this.http.post(url, body, httpOptions).toPromise().then(res => {
-          console.log(res);
           this.toastr.success('Ahora inicie sesión', '¡Gracias por registrarse !', {
             timeOut: 3000
           });
 
-          console.log("Registration done!");
+          console.log("User saved in Backend!");
           this.router.navigate(['/login']);
           resolve(res);
 

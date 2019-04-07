@@ -60,7 +60,7 @@
         <li class="nav-item dropdown" *ngIf="currentActor">
           <a style="color:aliceblue" class="dropdown-toggle profile-image" data-toggle="dropdown">
             <img class="special-img img-circle" width="40" height="40"
-              src="http://www.rotorua.tours/wp-content/uploads/2016/01/admin-png-4.png">
+              src="{{currentActor.imageUrl}}">
             <b>Hola, {{currentActor.name}}</b><b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
