@@ -10,8 +10,8 @@
   <div class="d-flex justify-content-center h-100">
     <div class="register_card">
       <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-        <h2 style="text-align: center;">{{ 'security.registerForm.registerTittle' | translate }} <br><b>ACME-Explorer</b></h2>
-        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTittle' | translate }} <br>{{ 'security.registerForm.registerThirdTittle' | translate }}</p>
+        <h2 style="text-align: center;">{{ 'security.registerForm.registerTitle' | translate }} <br><b>ACME-Explorer</b></h2>
+        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTitle' | translate }} <br>{{ 'security.registerForm.registerThirdTitle' | translate }}</p>
         <div class="form-group has-danger">
           <label for="role" class="form-control-label">{{ 'security.registerForm.registerRole' | translate }}:</label>
           <select id="role" class="form-control" formControlName="role">

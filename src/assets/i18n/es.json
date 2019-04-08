@@ -1,6 +1,6 @@
 {
     "system":{
-        "tittle": "ACME-Explorer"
+        "title": "ACME-Explorer"
     },
     "actor":{
         "email": "Correo electrónico"
@@ -23,9 +23,9 @@
             "registerPhone": "Teléfono",
             "registerAddress": "Dirección",
             "registerPassword": "Contraseña",
-            "registerTittle": "Registrate en",
-            "registerSecondTittle": "¡Crea tu cuenta!",
-            "registerThirdTittle": "Es gratis y podrás disfrutar de muchas ofertas"
+            "registerTitle": "Registrate en",
+            "registerSecondTitle": "¡Crea tu cuenta!",
+            "registerThirdTitle": "Es gratis y podrás disfrutar de muchas ofertas"
         }
     },
     "header":{
