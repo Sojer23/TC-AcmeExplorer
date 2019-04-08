@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="card-columns">
+    <div class="card" *ngFor="let trip of trips">
+      <img class="card-img-top"
+        src='{{trip.mainPicture}}' alt="Bologna">
+      <div class="card-body">
+        <h4 class="card-title">{{trip.title}}</h4>
+        <h6 class="card-subtitle mb-2">Price: {{trip.price}}</h6>
+        <p class="card-text">{{trip.description}}</p>
+        <p class="card-text">Paradas: {{trip.stages.length}}</p>
+        <a class="card-link text-danger" (click)="showToast(trip._id)">Read More</a>
+      </div>
+      <!-- <div class="row">
+        <div class="col-sm" *ngFor="let stage of trip.stages">
+          <small class="text-muted">{{stage.title}}<mat-icon>arrow_forward_ios</mat-icon></small>
+        </div>
+      </div> -->
+      <div class="bottom-wrap">
+        <a href="" class="btn btn-sm btn-primary float-right">Book now!</a>
+        <div class="price-wrap h5">
+          <span class="price-new">{{trip.price}}€</span> <del class="price-old">{{trip.price+200}}€</del>
+        </div> <!-- price-wrap.// -->
+      </div> <!-- bottom-wrap.// -->
+      <div class="card-footer" style="background-color:#232f3e">
+        <small class="text-muted">Published on: {{trip.created.substr(0,10)}}</small>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Ticker</th>
+      <th scope="col">Tittle</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let trip of trips; let i = index">
+    <tr>
+      <th scope="row">{{trip.ticker}}</th>
+      <th scope="row">{{trip.title}}</th>
+      <th scope="row">{{trip.description}}</th>
+      <th scope="row">{{trip.price}}</th>
+
+    </tr>
+  </tbody>
+</table>

@@ -6,14 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { BarRatingModule } from "ngx-bar-rating";
+//import { DataTablesModule} from 'datatables.net-dt';
 
 import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ActorComponent } from './components/actor/actor.component';
-import { TripComponent } from './components/trip/trip.component';
-import { TripListComponent } from './components/trip-list/trip-list.component';
-import { ApplicationComponent } from './components/application/application.component';
 import { HeaderComponent } from './components/master/header/header.component';
 import { FooterComponent } from './components/master/footer/footer.component';
 import { RegisterComponent } from './components/security/register/register.component';
@@ -28,6 +26,15 @@ import { MatIconModule, MatButtonModule} from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
 import { MainComponent } from './components/master/main/main.component';
 import { CommonModule } from '@angular/common';
+import { TripComponent } from './components/entities/trips/trip/trip.component';
+import { TripListComponent } from './components/entities/trips/trip-list/trip-list.component';
+import { TripEditComponent } from './components/entities/trips/trip-edit/trip-edit.component';
+import { ActorComponent } from './components/entities/actors/actor/actor.component';
+import { ApplicationComponent } from './components/entities/aplications/application/application.component';
+import { ActorListComponent } from './components/entities/actors/actor-list/actor-list.component';
+import { ActorEditComponent } from './components/entities/actors/actor-edit/actor-edit.component';
+import { ApplicationListComponent } from './components/entities/aplications/application-list/application-list.component';
+import { ApplicationEditComponent } from './components/entities/aplications/application-edit/application-edit.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -49,22 +56,30 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
-    TripListComponent,
     ApplicationComponent,
     LoginComponent,
-    TripComponent,
     TranslatableComponent,
     DeniedAccessPageComponent,
-    MainComponent
+    MainComponent,
+    TripComponent,
+    TripListComponent,
+    TripEditComponent,
+    ActorListComponent,
+    ActorEditComponent,
+    ApplicationListComponent,
+    ApplicationEditComponent
   ],
   imports: [
     AppRoutingModule,
-    CommonModule,
     //RouterModule.forRoot([]),
+    CommonModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BarRatingModule,
+    //DataTablesModule,
+    InfiniteScrollModule,
     AngularFireModule.initializeApp(firebaseConfig),
     TranslateModule.forRoot({
       loader: {
