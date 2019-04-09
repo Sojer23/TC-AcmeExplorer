@@ -1,28 +1,40 @@
 <div class="container">
   <div class="card-columns">
-    <div class="card" *ngFor="let trip of trips">
-      <img class="card-img-top"
-        src='{{trip.mainPicture}}' alt="Bologna">
+    <div class="card" *ngFor="let trip of trips; let i = index">
+      <img class="card-img-top" src='{{trip.mainPicture}}' alt="Bologna">
       <div class="card-body">
         <h4 class="card-title">{{trip.title}}</h4>
-        <h6 class="card-subtitle mb-2">Price: {{trip.price}}</h6>
+        <h6 class="card-subtitle mb-2">Precio: {{trip.price}}</h6>
         <p class="card-text">{{trip.description}}</p>
-        <p class="card-text">Paradas: {{trip.stages.length}}</p>
-        <a class="card-link text-danger" (click)="showToast(trip._id)">Read More</a>
+        <p class="card-text"><b>Paradas:</b> {{trip.stages.length}}</p>
+        <a class="card-link text-danger" [routerLink]="['/trips/display', trip._id]">Leer más</a>
+        <div class="row">
+            <div class="col-sm">
+                <p class="card-text">{{trip.comments.length}} comentarios</p>
+            </div>
+            <div class="col-sm">
+              <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 1">star</mat-icon>
+              <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 1)">star_border</mat-icon>
+              <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 2">star</mat-icon>
+              <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 2)">star_border</mat-icon>
+              <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 3">star</mat-icon>
+              <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 3)">star_border</mat-icon>
+              <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 4">star</mat-icon>
+              <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 4)">star_border</mat-icon>
+              <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 5">star</mat-icon>
+              <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 5)">star_border</mat-icon>
+            </div>
+          </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-sm" *ngFor="let stage of trip.stages">
-          <small class="text-muted">{{stage.title}}<mat-icon>arrow_forward_ios</mat-icon></small>
-        </div>
-      </div> -->
+      
       <div class="bottom-wrap">
-        <a href="" class="btn btn-sm btn-primary float-right">Book now!</a>
+        <a href="" class="btn btn-sm btn-primary float-right"><b>¡Reserva ya!</b></a>
         <div class="price-wrap h5">
           <span class="price-new">{{trip.price}}€</span> <del class="price-old">{{trip.price+200}}€</del>
         </div> <!-- price-wrap.// -->
       </div> <!-- bottom-wrap.// -->
       <div class="card-footer" style="background-color:#232f3e">
-        <small class="text-muted">Published on: {{trip.created.substr(0,10)}}</small>
+        <small class="text-muted">Fecha de publicación: {{trip.created.substr(0,10)}}</small>
       </div>
 
     </div>
@@ -33,7 +45,7 @@
 
 
 
-<table class="table table-hover">
+<table datatable *ngIf="this.authService.checkRole('ADMINISTRATOR|MANAGER')">
   <thead>
     <tr>
       <th scope="col">Ticker</th>
@@ -48,7 +60,9 @@
       <th scope="row">{{trip.title}}</th>
       <th scope="row">{{trip.description}}</th>
       <th scope="row">{{trip.price}}</th>
-
+      <th scope="row">
+        <button *ngIf="this.authService.checkRole('ADMINISTRATOR')" type="button"><mat-icon>delete</mat-icon></button>
+      </th>
     </tr>
   </tbody>
 </table>

@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BarRatingModule } from "ngx-bar-rating";
-//import { DataTablesModule} from 'datatables.net-dt';
+import { DataTablesModule} from 'angular-datatables';
 
 import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +50,35 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
+  
+  imports: [
+    AppRoutingModule,
+    BarRatingModule,
+    //RouterModule.forRoot([]),
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule, 
+    DataTablesModule,
+    InfiniteScrollModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatButtonModule, //To insert material buttons
+    MatIconModule, //To insert Icons
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }) // ToastrModule added
+  ],
   declarations: [
     AppComponent,
     ActorComponent,
@@ -68,34 +97,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ActorEditComponent,
     ApplicationListComponent,
     ApplicationEditComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    //RouterModule.forRoot([]),
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BarRatingModule,
-    //DataTablesModule,
-    InfiniteScrollModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    MatButtonModule, //To insert material buttons
-    MatIconModule, //To insert Icons
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true
-    }) // ToastrModule added
   ],
   exports: [
     RouterModule

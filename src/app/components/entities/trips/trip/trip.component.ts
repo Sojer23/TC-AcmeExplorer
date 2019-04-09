@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslatableComponent } from 'src/app/components/shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TripService } from 'src/app/services/trip.service';
+import { Trip } from 'src/app/models/trip.model';
 
 @Component({
   selector: 'app-trip',
@@ -10,10 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TripComponent extends TranslatableComponent implements OnInit {
 
-  //trip = new Trip();
+  trip = new Trip();
   id: string;
   starArray: boolean[];
-  constructor(private route: ActivatedRoute, private translateService: TranslateService) {
+  constructor(private route: ActivatedRoute, 
+    private translateService: TranslateService,
+    private tripService: TripService) {
     super(translateService);
    }
 
@@ -21,7 +25,13 @@ export class TripComponent extends TranslatableComponent implements OnInit {
     //Recover id param
     this.id = this.route.snapshot.params['id'];
 
+    console.log("ID in trip view: "+this.id);
+
     //Recover the item
+    this.tripService.getTrip(this.id).then((trip)=>{
+      console.log(trip);
+      this.trip = trip;
+    })
 
   }
 

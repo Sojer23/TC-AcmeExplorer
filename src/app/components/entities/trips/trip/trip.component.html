@@ -1,3 +1,119 @@
-<p>
-  trip works!
-</p>
+<div class="card">
+  <div class="row no-gutters">
+    <aside class="col-sm-5 border-right">
+      <article class="gallery-wrap">
+        <div class="img-big-wrap">
+          <div> <a href='{{trip.mainPicture}}' data-fancybox=""><img src='{{trip.mainPicture}}'></a></div>
+        </div> <!-- slider-product.// -->
+        <div class="img-small-wrap">
+          <div class="item-gallery"> <img src='https://www.parispass.es/images/attractions/louvre.jpg'></div>
+          <div class="item-gallery"> <img
+              src='https://images.placesonline.com/photos/41793_la_chiesa_del_sacro_cuore_parigi.jpg'></div>
+          <div class="item-gallery"> <img
+              src='https://www.motel-one.com/fileadmin/dam/_processed_/5/e/csm_Paris_0410_492x492_1bf4c98721.jpg'></div>
+          <div class="item-gallery"> <img
+              src='https://destinosinolvidables.files.wordpress.com/2009/09/campos-eliseos-11.jpg?w=530'></div>
+        </div> <!-- slider-nav.// -->
+      </article> <!-- gallery-wrap .end// -->
+    </aside>
+    <aside class="col-sm-7">
+      <article class="p-5">
+        <h3 class="title mb-3">{{trip.title}}</h3>
+
+        <div class="mb-3">
+          <var class="price h3 text-warning">
+            <span class="num">{{trip.price}}</span><span class="currency">€</span>
+          </var>
+          <span>/por persona</span>
+        </div> <!-- price-detail-wrap .// -->
+        <dl>
+          <dt>Descripción</dt>
+          <dd>
+            <p>{{trip.description}}</p>
+          </dd>
+        </dl>
+        <div class="box">
+          <dl class="row">
+            <dt class="col-sm-2" *ngFor="let stage of trip.stages; let first = first; let last = last"
+              [ngClass]="{ first: first, last: last }">
+              <span class="mb-2 border icon-xs round">
+                <mat-icon>location_on</mat-icon>
+              </span> {{stage.title}} </dt>
+          </dl>
+        </div> <!-- box.// -->
+
+        <div class="rating-wrap">
+
+          <div class="col-sm">
+            <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 1">star</mat-icon>
+            <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 1)">star_border</mat-icon>
+            <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 2">star</mat-icon>
+            <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 2)">star_border</mat-icon>
+            <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 3">star</mat-icon>
+            <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 3)">star_border</mat-icon>
+            <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 4">star</mat-icon>
+            <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 4)">star_border</mat-icon>
+            <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 5">star</mat-icon>
+            <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 5)">star_border</mat-icon>
+          </div>
+          <div class="col-sm label-rating" *ngIf="trip?.comments">{{trip.comments.length}} comentarios</div>
+        </div> <!-- rating-wrap.// -->
+        <hr>
+        <div class="row">
+          <div class="col-sm-5">
+            <dl class="dlist-inline">
+              <dt>Paradas: </dt>
+              <dd>
+                <select class="form-control form-control-sm" style="width:70px;">
+                  <option> 1 </option>
+                  <option> 2 </option>
+                  <option> 3 </option>
+                </select>
+              </dd>
+            </dl> <!-- item-property .// -->
+          </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <hr>
+        <a href="#" class="btn  btn-primary">Solicitar reserva </a>
+        <a href="#" class="btn  btn-outline-primary">
+          <mat-icon>shopping-cart</mat-icon> Añadir al carrito
+        </a>
+      </article> <!-- card-body.// -->
+    </aside> <!-- col.// -->
+  </div> <!-- row.// -->
+</div> <!-- card.// -->
+
+
+<div class="row bootstrap snippets">
+    <div class="col-md-6 col-md-offset-2 col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Comment panel
+                </div>
+                <div class="panel-body">
+                    <textarea class="form-control" placeholder="Escribe un comentario..." rows="3"></textarea>
+                    <br>
+                    <button type="button" class="btn btn-info pull-right">Nuevo Comentario</button>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                        <li class="media" *ngFor="let comment of trip.comments; let i = index">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">30 min ago</small>
+                                </span>
+                                <strong class="text-success">{{i}}-{{comment.title}}(@{{comment.author}})</strong>
+                                <p>{{comment.commentText}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

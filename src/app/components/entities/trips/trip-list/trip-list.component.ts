@@ -4,6 +4,8 @@ import { TranslatableComponent } from 'src/app/components/shared/translatable/tr
 import { TranslateService } from '@ngx-translate/core';
 import { Trip } from 'src/app/models/trip.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-trip-list',
@@ -15,10 +17,13 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   currentTrip = new Trip;
 
   trips = [];
+  
 
   constructor(private translateService: TranslateService, 
     private tripService: TripService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private router: Router,
+    private authService: AuthService) {
     super(translateService);
   }
 

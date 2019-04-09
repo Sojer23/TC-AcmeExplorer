@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private roles=["SPONSOR", "ADMINISTRATOR", "MANAGER", "EXPLORER", "anonymous"];
   private currentActor: Actor;
 
   //To check if user is logged in
@@ -39,7 +41,7 @@ export class AuthService {
             timeOut: 3000
           });
           this.router.navigate(['/home']);
-          res(current_actor);
+          res(this.currentActor);
 
         }).catch(err=>{
           console.log(Date()+": Error in function getCurrentActorFromDB: "+ err);
@@ -76,6 +78,7 @@ export class AuthService {
         this.toastr.info('','¡Hasta pronto '+this.currentActor.name+'!', {
           timeOut: 3000
         });
+        this.currentActor = null;
         this.router.navigate(['/home']);
         res(data);
       }).catch(err => {
@@ -172,6 +175,25 @@ export class AuthService {
 
 
   getRoles() {
-    return ["SPONSOR", "ADMINISTRATOR", "MANAGER", "EXPLORER"];
+    return this.roles;
+  }
+
+  checkRole(roles: string): boolean{
+    let result = false;
+
+    if(this.currentActor){
+      if(roles.indexOf(this.currentActor.role.toString())!== -1){
+        result = true;
+      }else{
+        result = false;
+      }
+    }else{
+      if(roles.indexOf('anonymous') !== -1){
+        result= true;
+      }else{
+        result = false;
+      }
+    }
+    return result;
   }
 }

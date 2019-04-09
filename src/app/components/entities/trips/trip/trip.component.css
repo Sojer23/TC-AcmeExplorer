@@ -1,7 +1,98 @@
-body {
-    padding: 2rem 0rem;
-  }
+element.style {
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+/*GALLERY WRAP*/
+.gallery-wrap .img-big-wrap {
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.gallery-wrap .img-small-wrap {
+  text-align: center;
+}
+
+.gallery-wrap .img-big-wrap a {
+  text-align: center;
+  display: block;
+}
+
+.gallery-wrap .img-small-wrap .item-gallery {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ddd;
+  margin: 7px 2px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+.round {
+  border-radius: 200px;
+}
+.border {
+  border: 1px solid #dee2e6;
+}
+.icon-xs {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+}
+.icon-xs, .icon-sm, .icon-md, .icon-lg {
+  display: inline-block;
+  text-align: center;
+}
+
+.first{
+  color: rgb(83, 253, 5);
   
-  .card {
-    width: 20rem;
-  }
+}
+
+.last{
+  color: rgb(247, 29, 29);
+}
+
+/*COMMENTS*/
+body{margin-top:20px;}
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+      
