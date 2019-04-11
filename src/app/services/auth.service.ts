@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private roles=["SPONSOR", "ADMINISTRATOR", "MANAGER", "EXPLORER", "anonymous"];
+  private roles=["SPONSOR", "ADMINISTRATOR", "MANAGER", "EXPLORER"];
   private currentActor: Actor;
 
   //To check if user is logged in
@@ -37,7 +37,7 @@ export class AuthService {
           console.log("Current Actor: NAME: "+current_actor.name+". EMAIL: "+current_actor.email);
           this.currentActor = current_actor;
           this.userLoggedIn.next(true);
-          this.toastr.success(current_actor.name, '¡Bienvenido a Acme-Explorer!', {
+          this.toastr.success(current_actor.name, '¡Bienvenid@ a Acme-Explorer!', {
             timeOut: 3000
           });
           this.router.navigate(['/home']);

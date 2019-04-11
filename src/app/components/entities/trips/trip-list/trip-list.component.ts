@@ -29,6 +29,14 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
 
   ngOnInit() {
     this.tripService.getTrips().then(trips=>{
+
+      console.log("Showing "+trips.length+" trips.");
+
+      if(trips.length ==0){
+        this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
+          timeOut: 3000
+        });
+      }
       this.trips = trips;
     });
   }

@@ -23,7 +23,6 @@ export class TripService {
       };
       const url = this.tripsUrl;
       this.http.get(url, httpOptions).toPromise().then((trips) => {
-        console.log(trips[0]);
         res(trips);
       }, err => {
         console.log(err);
