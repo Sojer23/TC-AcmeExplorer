@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:8080/v1'
+  apiBaseUrl: 'http://acme-explorer-server.herokuapp.com/v1'
 };

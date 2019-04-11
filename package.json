@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -71,7 +71,19 @@
     "typescript": "~2.9.2"
   },
   "engines": {
-    "node": "6.11.0",
-    "npm": "3.10.10"
-  }
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sojer23/TC-AcmeExplorer.git"
+  },
+  "author": "Jose Gallardo Gallardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sojer23/TC-AcmeExplorer/issues"
+  },
+  "homepage": "https://github.com/Sojer23/TC-AcmeExplorer#readme"
 }
