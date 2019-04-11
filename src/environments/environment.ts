@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://acme-explorer-server.herokuapp.com/v1'
+  apiBaseUrl: 'https://acme-explorer-server.herokuapp.com/v1'
 };
 
 /*
