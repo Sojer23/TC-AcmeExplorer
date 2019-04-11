@@ -12,8 +12,8 @@ import { TranslatableComponent } from '../../shared/translatable/translatable.co
 })
 export class HeaderComponent extends TranslatableComponent implements OnInit {
 
-  private currentActor: Actor;
-  private activeRole = "anonymous";
+  currentActor: Actor;
+  activeRole = "anonymous";
 
   constructor(private translateService: TranslateService,
     private authService: AuthService) {

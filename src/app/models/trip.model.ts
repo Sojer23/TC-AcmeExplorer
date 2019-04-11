@@ -12,6 +12,7 @@ export class Trip extends Entity{
     stages: Stage[];
     comments: Comment[];
     totalStars: DoubleRange;
+    mainPicture: string;
 }
 
 class Stage {

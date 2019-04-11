@@ -23,7 +23,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
     private tripService: TripService,
     private toastr: ToastrService,
     private router: Router,
-    private authService: AuthService) {
+    public authService: AuthService) {
     super(translateService);
   }
 
