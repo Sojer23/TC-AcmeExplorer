@@ -19,6 +19,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'anonymous' } },
     { path: 'deny', component: DeniedAccessPageComponent },
+    { path: 'actor', component: ActorComponent },
     {
         path: 'profiles', children: [
             { path: 'profile/:id', component: ActorComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER|SPONSOR' } }

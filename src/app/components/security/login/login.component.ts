@@ -15,7 +15,9 @@ export class LoginComponent extends TranslatableComponent{
 
   private email: string;
 
-  constructor(private authService: AuthService, private translateService: TranslateService, private toastr: ToastrService) { 
+  constructor(private authService: AuthService, 
+    private translateService: TranslateService, 
+    private toastr: ToastrService) { 
     super(translateService);
   }
 
