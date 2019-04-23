@@ -29,6 +29,34 @@ export class ActorService {
     });
   }
 
+  getActor(actorId){
+    return new Promise<any>((res,rej)=>{
+      const url = this.itemsUrl+"/"+actorId;
+      this.http.get(url, httpOptions).toPromise().then((actor)=>{
+        res(actor);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+    });
+  }
+
+  updateProfile(actor: Actor){
+    return new Promise<any>((res,rej)=>{
+
+      const body = JSON.stringify(actor);
+      const url = this.itemsUrl+"/"+actor['_id'];
+
+      console.log(actor);
+      this.http.put(url,body, httpOptions).toPromise().then((actor)=>{
+        res(actor);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+    });
+  }
+
   getActorsPage(start: number, psize: number, category: string, keyword:string){
     const url = environment.apiBaseUrl + '/actors/search';
     const parameters = {

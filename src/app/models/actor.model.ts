@@ -1,6 +1,7 @@
 import {Entity} from './entity.model';
 
 export class Actor extends Entity{
+    _id: string;
     name: string;
     surname: string;
     email: string;

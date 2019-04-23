@@ -10,6 +10,7 @@ import { DeniedAccessPageComponent } from './components/denied-access-page/denie
 import { ActorComponent } from './components/entities/actors/actor/actor.component';
 import { TripListComponent } from './components/entities/trips/trip-list/trip-list.component';
 import { TripComponent } from './components/entities/trips/trip/trip.component';
+import { ActorEditComponent } from './components/entities/actors/actor-edit/actor-edit.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'anonymous' } },
     { path: 'deny', component: DeniedAccessPageComponent },
-    { path: 'actor', component: ActorComponent },
+    { path: 'profile', component: ActorComponent },
+    { path: 'edit-profile', component: ActorEditComponent},
     {
         path: 'profiles', children: [
             { path: 'profile/:id', component: ActorComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER|SPONSOR' } }
@@ -28,7 +30,7 @@ const appRoutes: Routes = [
     {
         path: 'trips', children: [
             { path: 'display/:id', component: TripComponent },
-            { path: '', component: TripListComponent }
+            { path: '', component: TripListComponent,  canActivate: [ActorRoleGuard], data: { expectedRole: 'ADMINISTRATOR' }}
         ]
     }
 
