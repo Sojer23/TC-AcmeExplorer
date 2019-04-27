@@ -30,11 +30,9 @@ const appRoutes: Routes = [
     {
         path: 'trips', children: [
             { path: 'display/:id', component: TripComponent },
-            { path: '', component: TripListComponent,  canActivate: [ActorRoleGuard], data: { expectedRole: 'ADMINISTRATOR' }}
+            { path: '', component: TripListComponent}
         ]
     }
-
-    //{path:'trips', component: ListTripsComponent},
     //{path:'not-found', component: NotFoundPageComponent},
     //{path:'**', redirectTo:'/not-found'}
 ]
