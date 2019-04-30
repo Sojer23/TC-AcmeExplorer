@@ -11,6 +11,7 @@ import { ActorComponent } from './components/entities/actors/actor/actor.compone
 import { TripListComponent } from './components/entities/trips/trip-list/trip-list.component';
 import { TripComponent } from './components/entities/trips/trip/trip.component';
 import { ActorEditComponent } from './components/entities/actors/actor-edit/actor-edit.component';
+import { NotFoundComponent } from './components/master/not-found/not-found.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -18,13 +19,14 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'anonymous' } },
     { path: 'home', component: MainComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
+    
     { path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'anonymous' } },
     { path: 'deny', component: DeniedAccessPageComponent },
-    { path: 'profile', component: ActorComponent },
-    { path: 'edit-profile', component: ActorEditComponent},
     {
-        path: 'profiles', children: [
-            { path: 'profile/:id', component: ActorComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER|SPONSOR' } }
+        path: 'profile', children: [
+            { path: 'edit', component: ActorEditComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER|SPONSOR' }},
+            { path: 'display/:id', component: ActorComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER|SPONSOR' } },
+            { path: '', component: ActorComponent}
         ]
     },
     {
@@ -32,9 +34,10 @@ const appRoutes: Routes = [
             { path: 'display/:id', component: TripComponent },
             { path: '', component: TripListComponent}
         ]
-    }
-    //{path:'not-found', component: NotFoundPageComponent},
-    //{path:'**', redirectTo:'/not-found'}
+    },
+    {path:'not-found', component: NotFoundComponent},
+    {path:'**', redirectTo:'/not-found'},
+   
 ]
 
 

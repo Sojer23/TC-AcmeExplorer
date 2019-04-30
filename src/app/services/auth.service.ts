@@ -34,15 +34,16 @@ export class AuthService {
 
         this.getCurrentActorFromDB(email, password).then(current_actor=>{
 
-          console.log("Current Actor: NAME: "+current_actor.name+". EMAIL: "+current_actor.email);
-          this.currentActor = current_actor;
-          this.userLoggedIn.next(true);
-          this.toastr.success(current_actor.name, '¡Bienvenid@ a Acme-Explorer!', {
-            timeOut: 3000
-          });
-          this.router.navigate(['/home']);
-          res(this.currentActor);
-
+            console.log("User logged in!");
+            console.log("Current Actor: NAME: "+current_actor.name+". EMAIL: "+current_actor.email);
+            
+            this.currentActor = current_actor;
+            this.userLoggedIn.next(true);
+            this.toastr.success(current_actor.name, '¡Bienvenid@ a Acme-Explorer!', {
+              timeOut: 3000
+            });
+            this.router.navigate(['/home']);
+            res(this.currentActor);
         }).catch(err=>{
           console.log(Date()+": Error in function getCurrentActorFromDB: "+ err);
           rej(err);
@@ -79,6 +80,8 @@ export class AuthService {
           timeOut: 3000
         });
         this.currentActor = null;
+        this.userLoggedIn.next(false);
+        localStorage.removeItem('current_actor');
         this.router.navigate(['/home']);
         res(data);
       }).catch(err => {
@@ -89,7 +92,16 @@ export class AuthService {
   }
 
   getCurrentActor() {
-    return this.currentActor;
+    let result = null;
+    const currentActorString = localStorage.getItem('current_actor');
+    if(currentActorString){
+      result = JSON.parse(currentActorString);
+      this.currentActor = result;
+    }else{
+      console.log("User not present.")
+    }
+    
+    return result;
    }
 
   getCurrentActorFromDB(email, password) {
@@ -107,9 +119,20 @@ export class AuthService {
       };
       this.http.get(url, httpOptions).toPromise().then(actor => {
   
-        localStorage.setItem('current_actor', JSON.stringify(actor));
-        console.log("User logged in!");
-        
+        if(actor){
+          localStorage.setItem('current_actor', JSON.stringify({
+            id: actor['_id'],
+            name: actor['name'],
+            surname: actor['surname'],
+            email: actor['email'],
+            role: actor['role'],
+            preferredLanguage: actor['preferredLanguage'],
+            imageUrl: actor['imageUrl']
+          }));
+        }else{
+          localStorage.removeItem('current_actor');
+        }   
+
         response(actor);
   
       }, err => {

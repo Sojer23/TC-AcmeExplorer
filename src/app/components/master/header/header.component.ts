@@ -21,7 +21,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
   activeRole = "anonymous";
 
   constructor(private translateService: TranslateService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private tripService: TripService,
     private router: Router,
     private toastr: ToastrService) {
@@ -29,13 +29,18 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Current Role: " + this.activeRole);
+    this.currentActor = this.authService.getCurrentActor();
+    if (this.currentActor) {
+      this.activeRole = this.currentActor.role.toString();
+      console.log("Current Role: " + this.activeRole);
+    }
     this.authService.userLoggedIn.subscribe((loggedIn: boolean) => {
       if (loggedIn) {
         this.currentActor = this.authService.getCurrentActor();
-        this.activeRole = this.currentActor.role.toString();
-        console.log("Current Role: " + this.activeRole);
-
+        if (this.currentActor) {
+          this.activeRole = this.currentActor.role.toString();
+          console.log("Current Role: " + this.activeRole);
+        }
       } else {
         this.activeRole = 'anonymous';
         console.log("Current Role: " + this.activeRole);
@@ -47,7 +52,6 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
   logout() {
     this.authService.logout().then(_ => {
       this.activeRole = 'anonymous';
-      console.log("Current Role: " + this.activeRole);
 
       this.currentActor = null;
     }).catch(err => {
@@ -55,7 +59,7 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
     });
   }
 
-  searchTrips(form: NgForm){
+  searchTrips(form: NgForm) {
 
     console.log(form.value.keyword);
 
@@ -74,16 +78,16 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
       sortedBy=""
     }*/
 
-    if(!keyword){
+    if (!keyword) {
       this.toastr.error('Error en la búsqueda', 'Introduzca una palabra clave', {
         timeOut: 3000
       });
-    }else{
-      this.tripService.getTripsBySearch(0, 10, "", true, keyword).then(trips=>{
+    } else {
+      this.tripService.getTripsBySearch(0, 10, "", true, keyword).then(trips => {
 
-        console.log("Searching: "+trips.length+" trips.");
+        console.log("Searching: " + trips.length + " trips.");
 
-        if(trips.length ==0){
+        if (trips.length == 0) {
           this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
             timeOut: 3000
           });

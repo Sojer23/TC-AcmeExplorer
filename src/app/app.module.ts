@@ -35,6 +35,8 @@ import { ActorListComponent } from './components/entities/actors/actor-list/acto
 import { ActorEditComponent } from './components/entities/actors/actor-edit/actor-edit.component';
 import { ApplicationListComponent } from './components/entities/aplications/application-list/application-list.component';
 import { ApplicationEditComponent } from './components/entities/aplications/application-edit/application-edit.component';
+import { NotFoundComponent } from './components/master/not-found/not-found.component';
+import { CookieService} from 'ngx-cookie-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -96,12 +98,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     ActorListComponent,
     ActorEditComponent,
     ApplicationListComponent,
-    ApplicationEditComponent
+    ApplicationEditComponent,
+    NotFoundComponent
   ],
   exports: [
     RouterModule
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

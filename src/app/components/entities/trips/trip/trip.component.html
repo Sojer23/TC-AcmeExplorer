@@ -83,37 +83,38 @@
   </div> <!-- row.// -->
 </div> <!-- card.// -->
 
-
-<div class="row bootstrap" style="margin-bottom: 100px;margin-top: 100px; ">
+<div class="container">
+  <div class="row" style="align-content: center; margin-bottom: 100px;margin-top: 100px; ">
     <div class="col-sm-6 center">
-        <div class="comment-wrapper">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    Comentarios del viaje
+      <div class="comment-wrapper">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Comentarios del viaje
+          </div>
+          <div class="panel-body">
+            <textarea class="form-control" placeholder="Escribe un comentario..." rows="3"></textarea>
+            <br>
+            <button type="button" class="btn btn-info pull-right">Nuevo Comentario</button>
+            <div class="clearfix"></div>
+            <hr>
+            <ul class="media-list">
+              <li class="media" *ngFor="let comment of trip.comments; let i = index">
+                <a href="#" class="pull-left">
+                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                  <span class="text-muted pull-right">
+                    <small class="text-muted">30 min ago</small>
+                  </span>
+                  <strong class="text-success">{{i}}-{{comment.title}}(@{{comment.author}})</strong>
+                  <p>{{comment.commentText}}</p>
                 </div>
-                <div class="panel-body">
-                    <textarea class="form-control" placeholder="Escribe un comentario..." rows="3"></textarea>
-                    <br>
-                    <button type="button" class="btn btn-info pull-right">Nuevo Comentario</button>
-                    <div class="clearfix"></div>
-                    <hr>
-                    <ul class="media-list">
-                        <li class="media" *ngFor="let comment of trip.comments; let i = index">
-                            <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                            </a>
-                            <div class="media-body">
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">30 min ago</small>
-                                </span>
-                                <strong class="text-success">{{i}}-{{comment.title}}(@{{comment.author}})</strong>
-                                <p>{{comment.commentText}}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
 
     </div>
+  </div>
 </div>

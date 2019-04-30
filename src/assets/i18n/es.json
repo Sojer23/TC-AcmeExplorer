@@ -1,19 +1,19 @@
 {
-    "system":{
+    "system": {
         "title": "ACME-Explorer"
     },
-    "actor":{
+    "actor": {
         "email": "Correo electrónico"
     },
-    "security":{
+    "security": {
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
-        "loginForm":{
-            "loginRemind":"¿Ya tienes una cuenta?"
+        "loginForm": {
+            "loginRemind": "¿Ya tienes una cuenta?"
         },
         "register": "Registrarse",
         "registerForm": {
-            "registerRemind":"¿Todavía no tienes cuenta?",
+            "registerRemind": "¿Todavía no tienes cuenta?",
             "registerTerms": "Acepto los Términos de Uso y la Política de Privacidad",
             "registerLang": "Lenguaje",
             "registerRole": "Rol",
@@ -28,27 +28,78 @@
             "registerThirdTitle": "Es gratis y podrás disfrutar de muchas ofertas"
         }
     },
-    "header":{
+    "entities": {
+        "trips": {
+            "search": "Busca por destino",
+            "searchAdv": {
+                "main": "Búsqueda Avanzada",
+                "sortedBy": {
+                    "main": "Ordenar por",
+                    "bestRating": "Mejor valorados",
+                    "price": "Precio",
+                    "created": "Fecha de publicación"
+                },
+                "order": {
+                    "main": "Orden",
+                    "desc": "Descendente",
+                    "asc": "Ascendente"
+                },
+                "pageSize": {
+                    "main": "Viajes por página"
+                }
+            },
+            "showing": "Mostrando ",
+            "tripsStr": "viajes",
+            "card": {
+                "price": "Precio",
+                "stages": "Paradas",
+                "comments": "comentarios",
+                "created": "Fecha de publicación",
+                "more": "Leer más",
+                "booking": "¡Reserva ya!"
+            },
+            "adminTable": {
+                "header": {
+                    "ticker": "Ticker",
+                    "destiny": "Destino",
+                    "description": "Descripción",
+                    "price": "Precio",
+                    "actions": "Acciones"
+                }
+            }
+        },
+        "actors": {},
+        "applications": {}
+    },
+    "header": {
         "regard": "Hola, ",
         "search": "Buscar",
-        "menu":{
+        "menu": {
             "trips": {
-                "main":"Viajes",
-                "first":"Listado de Viajes",
+                "main": "Viajes",
+                "first": "Listado de Viajes",
                 "second": "Carga de Viajes",
                 "third": "Nuevo Viaje"
+            },
+            "applications": {
+                "main": "Reservas",
+                "explorer": "Mis Reservas",
+                "manager": "Gestionar Reservas",
+                "administrator": "Listado de Reservas"
+            },
+            "profile": {
+                "profile": "Perfil",
+                "edit": "Editar Perfil",
+                "sesion": "Cerrar sesión"
             }
         }
     },
-    "footer":{
+    "footer": {
         "dev": "Desarrollado con ❤️ por "
     },
-    "profile":{
-        "profile": "Perfil"
-    },
-    "deny":{
-        "text1":"¡No hay forma de que ",
+    "deny": {
+        "text1": "¡No hay forma de que ",
         "text2": " Imma te deje pasar! ",
-        "warning":"Acceso Prohibido."
+        "warning": "Acceso Prohibido."
     }
 }

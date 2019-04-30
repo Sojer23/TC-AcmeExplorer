@@ -30,7 +30,7 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
     if (this.tripService.trips.length != 0) {
       console.log("Tamaño del array de viajes en constructor: " + this.tripService.trips.length);
       this.trips = this.tripService.trips
-    }else{
+    } else {
 
     }
   }
@@ -59,7 +59,6 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
   }
 
   searchTrips(form: NgForm) {
-    console.log(form);
 
     var beginFrom = form.value.beginFrom;
     var pageSize = form.value.pageSize;
@@ -78,13 +77,15 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
           this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
             timeOut: 3000
           });
+        } else {
+          this.trips = trips;
+          console.log("Showing " + this.trips.length + " trips.");
         }
-        this.trips = trips;
       });
     }
   }
 
-  searchTripsAdv(form: NgForm){
+  searchTripsAdv(form: NgForm) {
 
     console.log(form);
     var beginFrom = form.value.beginFrom;
@@ -104,8 +105,10 @@ export class TripListComponent extends TranslatableComponent implements OnInit {
           this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
             timeOut: 3000
           });
+        } else {
+          this.trips = trips;
+          console.log("Showing " + this.trips.length + " trips.");
         }
-        this.trips = trips;
       });
     }
   }

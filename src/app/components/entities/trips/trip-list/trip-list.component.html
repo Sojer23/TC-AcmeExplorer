@@ -1,82 +1,88 @@
 <div class="container">
   <div class="row">
+
     <div class="col-md-6">
       <form (ngSubmit)="searchTrips(f)" #f="ngForm" class="form-horizontal" role="form">
         <div class="input-group" id="adv-search">
-          <input type="text" name="keyword" class="form-control" placeholder="Busca por destino" ngModel>
+          <input type="search" name="keyword" class="form-control" placeholder="{{'entities.trips.search'| translate}}" ngModel>
 
           <button type="submit" class="btn my-2 my-sm-0" style="background-color:#232f3e">
             <mat-icon style="color:aliceblue">search</mat-icon>
           </button>
+
         </div>
       </form>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="input-group-btn">
-      <div class="btn-group" role="group">
-        <div class="dropdown dropdown-lg">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-            aria-expanded="false"><span class="caret">Búsqueda avanzada</span></button>
-          <div class="dropdown-menu dropdown-menu-right" role="menu">
-            <form (ngSubmit)="searchTripsAdv(fo)" #fo="ngForm" class="form-horizontal" role="form">
-              <div class="form-group">
-                <input type="text" name="keywordAdv" class="form-control" placeholder="Busca por destino" ngModel>
-              </div>
-              <div class="form-group">
-                <label for="filter">Ordenar por</label>
-                <select name="sortedBy" class="form-control" ngModel>
-                  <option ngValue="totalStars" selected>Mejor valorados</option>
-                  <option ngValue="price">Precio</option>
-                  <option ngValue="created">Fecha de publicación</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="filter">Orden</label>
-                <select name="backwards" class="form-control" ngModel>
-                  <option ngValue="false" selected>Ascendente</option>
-                  <option ngValue="true">Descendente</option>
-                </select>
-              </div>
+    <div class="col-md-6">
+      <div class="input-group-btn">
+        <div class="btn-group" role="group">
+          <div class="dropdown dropdown-lg">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+              aria-expanded="false"><span class="caret">{{'entities.trips.searchAdv.main'| translate}}</span></button>
+            <div class="dropdown-menu dropdown-menu-right" role="menu">
+              <form (ngSubmit)="searchTripsAdv(fo)" #fo="ngForm" class="form-horizontal" role="form">
+                <div class="form-group">
+                  <input type="text" name="keywordAdv" class="form-control" placeholder="{{'entities.trips.search'| translate}}" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="filter">{{'entities.trips.searchAdv.sortedBy.main'| translate}}</label>
+                  <select name="sortedBy" class="form-control" ngModel>
+                    <option ngValue="totalStars" selected>{{'entities.trips.searchAdv.sortedBy.bestRating'| translate}}</option>
+                    <option ngValue="price">{{'entities.trips.searchAdv.sortedBy.price'| translate}}</option>
+                    <option ngValue="created">{{'entities.trips.searchAdv.sortedBy.created'| translate}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="filter">{{'entities.trips.searchAdv.order.main'| translate}}</label>
+                  <select name="backwards" class="form-control" ngModel>
+                    <option ngValue="false" selected>{{'entities.trips.searchAdv.order.asc'| translate}}</option>
+                    <option ngValue="true">{{'entities.trips.searchAdv.order.desc'| translate}}</option>
+                  </select>
+                </div>
 
-              <div class="form-group">
-                <select name="pageSize" class="form-control" ngModel>
-                  <option ngValue="totalStars" selected disabled>Nº viajes por pag.</option>
-                  <option ngValue="5">5</option>
-                  <option ngValue="10">10</option>
-                  <option ngValue="15">15</option>
-                  <option ngValue="20">20</option>
-                </select>
-              </div>
-              <button type="submit" class="btn my-2 my-sm-0" style="background-color:#232f3e">
-                <mat-icon style="color:aliceblue">search</mat-icon>
-              </button>
-            </form>
+                <div class="form-group">
+                  <label for="pageSize">{{'entities.trips.searchAdv.pageSize.main'| translate}}</label>
+                  <select name="pageSize" class="form-control" ngModel>
+                    <option ngValue="5">5</option>
+                    <option ngValue="10">10</option>
+                    <option ngValue="15">15</option>
+                    <option ngValue="20">20</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn my-2 my-sm-0" style="background-color:#232f3e">
+                  <mat-icon style="color:aliceblue">search</mat-icon>
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="col-md-12">
+    <p *ngIf="trips.length !=0">{{'entities.trips.showing'| translate}} <b>{{trips.length}}</b> {{'entities.trips.tripsStr'| translate}} </p>
+  </div>
 </div>
 
-<div class="container" style="margin-top: 50px">
+<div class="container" style="margin-top: 50px; margin-bottom: 100px" *ngIf="this.authService.checkRole('EXPLORER|anonymous')">
   <div class="card-columns">
     <div class="card" *ngFor="let trip of trips; let i = index">
       <img class="card-img-top" src='{{trip.mainPicture}}' alt="Bologna">
       <div class="card-body">
         <h4 class="card-title">{{trip.title}}</h4>
-        <h6 class="card-subtitle mb-2">Precio: {{trip.price}} €</h6>
+        <h6 class="card-subtitle mb-2">{{'entities.trips.card.price'| translate}}: {{trip.price}} €</h6>
         <p class="card-text">
           <summary ng-hide="advstatus">{{trip.description | slice:0:50}}
             <span class="badge badge-light" ng-click="advstatus=true">...</span>
           </summary>
         </p>
-        <p class="card-text"><b>Paradas:</b> {{trip.stages.length}}</p>
-        <a class="card-link text-danger" [routerLink]="['/trips/display', trip._id]">Leer más</a>
+        <p class="card-text"><b>{{'entities.trips.card.stages'| translate}}:</b> {{trip.stages.length}}</p>
+        <a class="card-link text-danger" [routerLink]="['/trips/display', trip._id]">{{'entities.trips.card.more'| translate}}</a>
         <div class="row">
           <div class="col-sm">
-            <p class="card-text">{{trip.comments.length}} comentarios</p>
+            <p class="card-text">{{trip.comments.length}} {{'entities.trips.card.comments'| translate}}</p>
           </div>
           <div class="col-sm">
             <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 1">star</mat-icon>
@@ -94,15 +100,14 @@
       </div>
 
       <div class="bottom-wrap">
-        <a class="btn btn-sm btn-primary float-right" [routerLink]="['/trips/display', trip._id]"><b>¡Reserva
-            ya!</b></a>
+        <a class="btn btn-sm btn-primary float-right" [routerLink]="['/trips/display', trip._id]"><b>{{'entities.trips.card.booking'| translate}}</b></a>
         <div class="price-wrap h5">
           <span class="price-new">{{trip.price}}€&nbsp;&nbsp;&nbsp;&nbsp;</span> <del
             class="price-old">{{trip.price+200}}€</del>
         </div> <!-- price-wrap.// -->
       </div> <!-- bottom-wrap.// -->
       <div class="card-footer" style="background-color:#232f3e">
-        <small class="text-muted">Fecha de publicación: {{trip.created.substr(0,10)}}</small>
+        <small class="text-muted">{{'entities.trips.card.created'| translate}}: {{trip.created.substr(0,10)}}</small>
       </div>
 
     </div>
@@ -116,10 +121,11 @@
 <table datatable *ngIf="this.authService.checkRole('ADMINISTRATOR|MANAGER')">
   <thead>
     <tr>
-      <th scope="col">Ticker</th>
-      <th scope="col">Tittle</th>
-      <th scope="col">Description</th>
-      <th scope="col">Price</th>
+      <th scope="col">{{'entities.trips.adminTable.header.ticker'| translate}}</th>
+      <th scope="col">{{'entities.trips.adminTable.header.destiny'| translate}}</th>
+      <th scope="col">{{'entities.trips.adminTable.header.description'| translate}}</th>
+      <th scope="col">{{'entities.trips.adminTable.header.price'| translate}}</th>
+      <th scope="col">{{'entities.trips.adminTable.header.actions'| translate}}</th>
     </tr>
   </thead>
   <tbody *ngFor="let trip of trips; let i = index">
@@ -129,6 +135,9 @@
       <th scope="row">{{trip.description}}</th>
       <th scope="row">{{trip.price}}</th>
       <th scope="row">
+        <button *ngIf="this.authService.checkRole('ADMINISTRATOR | MANAGER')" type="button">
+          <mat-icon>edit</mat-icon>
+        </button>
         <button *ngIf="this.authService.checkRole('ADMINISTRATOR')" type="button">
           <mat-icon>delete</mat-icon>
         </button>

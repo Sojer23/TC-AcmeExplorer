@@ -7,6 +7,7 @@ import { ActorService } from 'src/app/services/actor.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { existingPhoneNumberValidator } from 'src/app/validators/existingPhone.validator';
+import { Observable } from 'rxjs';
 //import { Picture } from 'src/app/models/picture.model';
 
 @Component({
@@ -17,6 +18,7 @@ import { existingPhoneNumberValidator } from 'src/app/validators/existingPhone.v
 export class ActorEditComponent extends TranslatableComponent implements OnInit {
 
   profileForm: FormGroup;
+  updated: boolean;
   actor: Actor;
   langList: string[];
   photoChanged = false;
@@ -110,5 +112,17 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
       reader.readAsDataURL(file);
     }
   }*/
+
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    let result = false;
+    const message = "Estás seguro?";
+
+    if(!this.updated && this.profileForm.dirty){
+      result = confirm(message);
+    }
+
+    return result;
+  }
 
 }

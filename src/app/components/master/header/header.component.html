@@ -11,33 +11,54 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-              <a style="color:aliceblue; cursor:pointer" class="dropdown-toggle" data-toggle="dropdown">
-                <b>{{'header.menu.trips.main'| translate}}</b><b class="caret"></b>
+        <li class="nav-item dropdown" style="margin-right: 10px">
+          <a style="color:aliceblue; cursor:pointer" class="dropdown-toggle" data-toggle="dropdown">
+            <b>{{'header.menu.trips.main'| translate}}</b><b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/trips">
+                <mat-icon>airplanemode_active</mat-icon> {{'header.menu.trips.first'| translate}}
               </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/trips">
-                    <mat-icon>airplanemode_active</mat-icon> {{'header.menu.trips.first'| translate}}
-                  </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="#">
-                      <mat-icon>airplanemode_active</mat-icon> {{'header.menu.trips.second'| translate}}
-                    </a>
-                  </li>
-                <li class="divider"></li>
-                <li class="nav-item" *ngIf="currentActor">
-                  <a class="dropdown-item" style="color:rgb(123, 179, 101); font-weight: bold; cursor:pointer" routerLink="/home"
-                    (click)="logout()">
-                    <mat-icon>add_location</mat-icon>{{'header.menu.trips.third'| translate}}
-                  </a>
-                </li>
-              </ul>
             </li>
+            <li class="divider"></li>
+            <li class="nav-item" *ngIf="this.authService.checkRole('MANAGER')">
+              <a class="dropdown-item" style="color:rgb(123, 179, 101); font-weight: bold; cursor:pointer"
+                routerLink="/home" (click)="logout()">
+                <mat-icon>add_location</mat-icon>{{'header.menu.trips.third'| translate}}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- My APPLICATIONS only for -->
+      <ul class="navbar-nav" *ngIf="this.authService.checkRole('EXPLORER|ADMINISTRATOR|MANAGER')">
+        <li class="nav-item dropdown" style="margin-right: 10px">
+          <a style="color:aliceblue; cursor:pointer" class="dropdown-toggle" data-toggle="dropdown">
+            <b>{{'header.menu.applications.main'| translate}}</b><b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="this.authService.checkRole('EXPLORER')">
+              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/applications">
+                <mat-icon>bookmarks</mat-icon> {{'header.menu.applications.explorer'| translate}}
+              </a>
+            </li>
+            <li *ngIf="this.authService.checkRole('MANAGER')">
+              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/applications">
+                <mat-icon>bookmarks</mat-icon> {{'header.menu.applications.manager'| translate}}
+              </a>
+            </li>
+            <li *ngIf="this.authService.checkRole('ADMINISTRATOR')">
+                <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/applications">
+                  <mat-icon>bookmarks</mat-icon> {{'header.menu.applications.administrator'| translate}}
+                </a>
+              </li>
+          </ul>
+        </li>
       </ul>
       <form (ngSubmit)="searchTrips(f)" #f="ngForm" class="form-inline mx-auto">
-        <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="{{'header.search'| translate}}" aria-label="Search" ngModel>
+        <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="{{'header.search'| translate}}"
+          aria-label="Search" ngModel>
         <button mat-button class="btn my-2 my-sm-0" type="submit">
           <mat-icon>search</mat-icon>
         </button>
@@ -46,8 +67,10 @@
       <ul class="navbar-nav">
         <li class="nav-item active" style="margin-right:10px">
 
-          <button (click)="changeLanguage('en')" class="btn-sm  mr-1">EN</button>
-          <button (click)="changeLanguage('es')" class="btn-sm  mr-1">ES</button>
+          <button (click)="changeLanguage('en')" class="btn-sm  mr-1"><img src="../../../../../assets/en-icon.png"
+              alt="" /></button>
+          <button (click)="changeLanguage('es')" class="btn-sm  mr-1"><img src="../../../../../assets/es-icon.png"
+              alt="" /></button>
         </li>
         <li class="nav-item" *ngIf="activeRole == 'anonymous'">
           <a class="nav-link" style="color:aliceblue; font-weight: bold" routerLink="/register"
@@ -59,26 +82,26 @@
         </li>
         <li class="nav-item dropdown" *ngIf="currentActor">
           <a style="color:aliceblue" class="dropdown-toggle profile-image" data-toggle="dropdown">
-            <img class="special-img img-circle" width="40" height="40"
-              src="{{currentActor.imageUrl}}">
+            <img class="special-img img-circle" width="40" height="40" src="{{currentActor.imageUrl}}">
             <b>{{'header.regard'| translate}}{{currentActor.name}}</b><b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/edit-profile">
-                <mat-icon>person</mat-icon> {{'profile.profile'| translate}}
+              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/profile">
+                <mat-icon>person</mat-icon> {{'header.menu.profile.profile'| translate}}
               </a>
             </li>
             <li>
-              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer" routerLink="/edit-profile">
-                <mat-icon>edit</mat-icon> Editar perfil
+              <a class="dropdown-item" style="color:#232F3E; font-weight: bold; cursor:pointer"
+                routerLink="/profile/edit">
+                <mat-icon>edit</mat-icon> {{'header.menu.profile.edit'| translate}}
               </a>
             </li>
             <li class="divider"></li>
             <li class="nav-item" *ngIf="currentActor">
-              <a class="dropdown-item" style="color:rgb(226, 75, 37); font-weight: bold; cursor:pointer" routerLink="/home"
-                (click)="logout()">
-                <mat-icon>power_off</mat-icon>{{'security.logout'| translate}}
+              <a class="dropdown-item" style="color:rgb(226, 75, 37); font-weight: bold; cursor:pointer"
+                routerLink="/home" (click)="logout()">
+                <mat-icon>power_off</mat-icon>{{'header.menu.profile.sesion'| translate}}
               </a>
             </li>
           </ul>
