@@ -16,13 +16,13 @@ const MAX_ITEMS = 10;
 })
 export class ActorService {
 
-  private itemsUrl = environment.apiBaseUrl + '/actors';
+  private actorsUrl = environment.apiBaseUrl + '/actors';
   numObjects = MAX_ITEMS;
   constructor(private http: HttpClient) { }
 
   getActors(){
     return new Promise<any>((res,rej)=>{
-      const url = this.itemsUrl;
+      const url = this.actorsUrl;
       this.http.get(url, httpOptions).toPromise().then((actors)=>{
 
       });
@@ -31,7 +31,7 @@ export class ActorService {
 
   getActor(actorId){
     return new Promise<any>((res,rej)=>{
-      const url = this.itemsUrl+"/"+actorId;
+      const url = this.actorsUrl+"/"+actorId;
       this.http.get(url, httpOptions).toPromise().then((actor)=>{
         res(actor);
       }, err => {
@@ -45,7 +45,7 @@ export class ActorService {
     return new Promise<any>((res,rej)=>{
 
       const body = JSON.stringify(actor);
-      const url = this.itemsUrl+"/"+actor['_id'];
+      const url = this.actorsUrl+"/"+actor['_id'];
 
       console.log(actor);
       this.http.put(url,body, httpOptions).toPromise().then((actor)=>{

@@ -1,3 +1,55 @@
-<p>
-  application-list works!
-</p>
+<h4>Mis Reservas</h4>
+<div class="card" style="margin-bottom:100px;margin-top:50px">
+  <table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+      <tr>
+        <th scope="col">Reservas</th>
+        <th scope="col" width="120">Precio</th>
+        <th scope="col" width="120">Estado</th>
+        <th scope="col" width="250" class="text-right">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let application of applications; let i = index" [ngClass]="{'accepted': application.status == 'ACCEPTED'}">
+        <td>
+          <figure class="media">
+            <figcaption class="media-body">
+              <h6 class="title text-truncate">Reserva para el viaje: {{application.tripID}}</h6>
+              <dl class="dlist-inline small">
+                <dt>Comentario: </dt>
+                <dd>{{application.comments}}</dd>
+              </dl>
+              <dl class="dlist-inline small">
+                <dt>Fecha de reserva: </dt>
+                <dd>{{application.dateApplication.substring(0,10)}}</dd>
+              </dl>
+              <dl class="dlist-inline small">
+                <dt>Identificador de reserva: </dt>
+                <dd>{{application['_id']}}</dd>
+              </dl>
+            </figcaption>
+          </figure>
+        </td>
+        <td>
+          <div class="price-wrap">
+            <var class="price">XXX</var>
+            <small class="text-muted">(EUR / persona )</small>
+          </div> <!-- price-wrap .// -->
+        </td>
+        <td>
+          <var class="price">{{application.status}}</var>
+        </td>
+        <td class="text-right">
+          <a class="btn btn-outline-success" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist"> <i class="fa fa-paypal"></i> Pagar</a>
+          <a class="btn btn-outline-danger btn-round" *ngIf="application.status == 'ACCEPTED'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist"> <i class="fa fa-times"></i> Cancelar</a>
+          <p *ngIf="application.status == 'PENDING'">A la espera de ser evaluada</p>
+          <p class="danger" *ngIf="application.status == 'CANCELLED'">Reserva cancelada</p>
+          <p *ngIf="application.status == 'CANCELLED'">Motivo de la cancelación</p>
+          <p class="danger" *ngIf="application.status == 'CANCELLED'">{{application.rejectionComment}}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> <!-- card.// -->

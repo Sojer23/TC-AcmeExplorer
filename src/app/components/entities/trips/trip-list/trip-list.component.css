@@ -67,3 +67,16 @@
         min-width: 500px;
     }
 }
+
+
+.published{
+    color: rgba(42, 201, 90, 0.863)
+}
+
+.created{
+    color: rgba(226, 206, 25, 0.863)
+}
+
+.cancelled{
+    color: red
+}

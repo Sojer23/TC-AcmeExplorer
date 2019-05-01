@@ -12,6 +12,8 @@ import { TripListComponent } from './components/entities/trips/trip-list/trip-li
 import { TripComponent } from './components/entities/trips/trip/trip.component';
 import { ActorEditComponent } from './components/entities/actors/actor-edit/actor-edit.component';
 import { NotFoundComponent } from './components/master/not-found/not-found.component';
+import { ApplicationListComponent } from './components/entities/aplications/application-list/application-list.component';
+import { ApplicationComponent } from './components/entities/aplications/application/application.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -33,6 +35,12 @@ const appRoutes: Routes = [
         path: 'trips', children: [
             { path: 'display/:id', component: TripComponent },
             { path: '', component: TripListComponent}
+        ]
+    },
+    {
+        path: 'applications', children: [
+            { path: 'display/:id', component: ApplicationComponent },
+            { path: '', component: ApplicationListComponent}
         ]
     },
     {path:'not-found', component: NotFoundComponent},

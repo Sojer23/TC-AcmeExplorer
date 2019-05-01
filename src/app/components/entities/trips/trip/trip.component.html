@@ -59,7 +59,7 @@
           <div class="col-sm label-rating" *ngIf="trip?.comments">{{trip.comments.length}} comentarios</div>
         </div> <!-- rating-wrap.// -->
         <hr>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-5">
             <dl class="dlist-inline">
               <dt>Paradas: </dt>
@@ -70,21 +70,27 @@
                   <option> 3 </option>
                 </select>
               </dd>
-            </dl> <!-- item-property .// -->
-          </div> <!-- col.// -->
-        </div> <!-- row.// -->
-        <hr>
-        <a href="#" class="btn  btn-primary">Solicitar reserva </a>
-        <a href="#" class="btn  btn-outline-primary">
-          <mat-icon>shopping-cart</mat-icon> Añadir al carrito
+            </dl>
+          </div>
+        </div> -->
+        <a *ngIf="!apply && this.authService.checkRole('EXPLORER|anonymous')" (click)="apply = true" class="btn  btn-outline-primary">
+          <mat-icon>shopping_cart</mat-icon> Solicitar reserva
         </a>
+        <form (ngSubmit)="applyForATrip(f, trip['_id'])" #f="ngForm">
+          <textarea type="password" class="form-control" *ngIf="apply" class="form-control" name="comment" placeholder="Escribe un comentario..." rows="3" ngModel></textarea>
+          <button type="submit" *ngIf="apply" class="btn  btn-outline-primary">
+            <mat-icon>shopping_cart</mat-icon> Enviar
+          </button>
+        </form>
+
+
       </article> <!-- card-body.// -->
     </aside> <!-- col.// -->
   </div> <!-- row.// -->
 </div> <!-- card.// -->
 
 <div class="container">
-  <div class="row" style="align-content: center; margin-bottom: 100px;margin-top: 100px; ">
+  <div class="row" style="margin-bottom: 100px;margin-top: 100px; ">
     <div class="col-sm-6 center">
       <div class="comment-wrapper">
         <div class="panel panel-info">
@@ -104,9 +110,9 @@
                 </a>
                 <div class="media-body">
                   <span class="text-muted pull-right">
-                    <small class="text-muted">30 min ago</small>
+                    <small class="text-muted"></small>
                   </span>
-                  <strong class="text-success">{{i}}-{{comment.title}}(@{{comment.author}})</strong>
+                  <strong class="text-success">{{i}}-{{comment.title}} (@{{comment.author}})</strong>
                   <p>{{comment.commentText}}</p>
                 </div>
               </li>

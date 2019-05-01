@@ -64,6 +64,8 @@
                     "destiny": "Destino",
                     "description": "Descripción",
                     "price": "Precio",
+                    "status": "Estado",
+                    "evaluation": "Valoración",
                     "actions": "Acciones"
                 }
             }

@@ -63,6 +63,8 @@
                     "ticker": "Ticker",
                     "destiny": "Destiny",
                     "description": "Description",
+                    "status": "Status",
+                    "evaluation": "Evaluation",
                     "price": "Price",
                     "actions": "Acctions"
                 }
