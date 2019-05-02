@@ -145,8 +145,6 @@ export class AuthService {
 
   registerUser(actor: Actor) {
     return new Promise<any>((res, rej) => {
-      console.log(actor.email);
-      console.log(actor.password);
 
       if (actor.password.length < 6) {
         this.toastr.error("Debe contener al menos 6 caracteres", 'Contraseña incorrecta', {

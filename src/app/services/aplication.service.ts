@@ -46,6 +46,38 @@ export class AplicationService {
     }
 
 
+    getTripApplications(tripID){
+      return new Promise<any>((res, rej) => {
+        console.log("Getting application of trip with id: " + tripID);
+  
+        const url = this.applicationsUrl + "/trip/" + tripID;
+  
+        this.http.get(url, httpOptions).toPromise().then((applications) => {
+          res(applications);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+      });
+    }
+
+
+    getExplorerApplications(explorerId){
+      return new Promise<any>((res, rej) => {
+        console.log("Getting application of explorer with id: " + explorerId);
+  
+        const url = this.applicationsUrl + "/explorer/" + explorerId;
+  
+        this.http.get(url, httpOptions).toPromise().then((applications) => {
+          res(applications);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+      });
+    }
+
+
     getAllApplications(){
       return new Promise<any>((res, rej) => {
         console.log("Getting all applications");

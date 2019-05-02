@@ -16,24 +16,34 @@ export class ApplicationListComponent implements OnInit {
   constructor(private authService: AuthService,
     private applicationService: AplicationService,
     private toastr: ToastrService,
-    private router: Router) { 
+    private router: Router) {
 
-    }
+  }
 
   ngOnInit() {
 
-    this.applicationService.getAllApplications().then(applications => {
+    if (this.authService.checkRole('EXPLORER')) {
+      this.applicationService.getExplorerApplications(this.authService.getCurrentActor().id).then((applications) => {
+        this.applications = applications;
+      });
+    } else {
 
-      console.log("Showing " + applications.length + " applications.");
-
-      if (applications.length == 0) {
-        this.toastr.warning("Vuelve más tarde", 'No existen reservas en el sistema', {
-          timeOut: 3000
-        });
-      }
       
-      this.applications = applications;
-    });
+      this.applicationService.getAllApplications().then(applications => {
+
+        console.log("Showing " + applications.length + " applications.");
+
+        if (applications.length == 0) {
+          this.toastr.warning("Vuelve más tarde", 'No existen reservas en el sistema', {
+            timeOut: 3000
+          });
+        }
+
+        this.applications = applications;
+      });
+    }
+
+
   }
 
 }

@@ -98,6 +98,13 @@
               </a>
             </li>
             <li class="divider"></li>
+            <li class="nav-item" *ngIf="currentActor.role == 'ADMINISTRATOR'">
+              <a class="dropdown-item" style="color:rgb(226, 75, 37); font-weight: bold; cursor:pointer"
+                routerLink="/register">
+                <mat-icon>power_off</mat-icon>Registrar nuevo usuario
+              </a>
+            </li>
+            <li class="divider"></li>
             <li class="nav-item" *ngIf="currentActor">
               <a class="dropdown-item" style="color:rgb(226, 75, 37); font-weight: bold; cursor:pointer"
                 routerLink="/home" (click)="logout()">

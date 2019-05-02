@@ -69,14 +69,12 @@ export class TripComponent extends TranslatableComponent implements OnInit {
       this.router.navigate(['/register']);
     }
 
-    console.log(explorerId);
 
     this.applicationService.postApplication(tripId, explorerId, comment).then(application => {
-      this.toastr.warning("Procedemos a su evaluación", 'Reserva realizada con éxito', {
+      this.toastr.success("Procedemos a su evaluación", 'Reserva realizada con éxito', {
         timeOut: 3000
       });
       this.router.navigate(['/applications']);
-      console.log(application);
     }).catch(err => {
       console.log(err);
     });

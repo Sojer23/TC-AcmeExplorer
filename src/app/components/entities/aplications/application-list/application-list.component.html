@@ -1,5 +1,16 @@
 <h4>Mis Reservas</h4>
-<div class="card" style="margin-bottom:100px;margin-top:50px">
+
+<h6>Mostrando <b>{{applications.length}}</b> reservas</h6>
+
+<div  *ngIf="this.applications.length == 0" class="card text-white bg-success mb-3">
+  <div class="card-header">🏃‍♂️¡Corre que vuelan!✈️</div>
+  <div class="card-body">
+    <h5 class="card-title">Aún no tienes viajes reservados</h5>
+    <p class="card-text">Reserva tus viajes para poder obtener mejores ofertas y ahorrar mucho más💸</p>
+  </div>
+</div> <!-- card.// -->
+
+<div  *ngIf="this.applications.length != 0" class="card" style="margin-bottom:100px;margin-top:50px">
   <table class="table table-hover shopping-cart-wrap">
     <thead class="text-muted">
       <tr>

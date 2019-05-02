@@ -124,7 +124,8 @@
 
 
 
-<table datatable class="row-border hover" style="margin-top: 50px; margin-bottom: 100px" *ngIf="this.authService.checkRole('ADMINISTRATOR|MANAGER')">
+<table datatable class="row-border hover" style="margin-top: 50px; margin-bottom: 100px"
+  *ngIf="this.authService.checkRole('ADMINISTRATOR|MANAGER') && this.trips.length != 0">
   <thead>
     <tr>
       <th scope="col">{{'entities.trips.adminTable.header.ticker'| translate}}</th>
@@ -160,9 +161,13 @@
       </th>
     </tr>
   </tbody>
-  <tbody *ngIf="this.trips.length == 0">
-    <tr>
-        <td colspan="4">No hay viajes registrados en el sistema.</td>
-    </tr>
-  </tbody>
+
 </table>
+
+<div *ngIf="this.trips.length == 0" style="margin-top: 50px; margin-bottom: 100px" class="card text-white bg-warning mb-3">
+  <div class="card-header">✈️No se han encontrado viajes✈️</div>
+  <div class="card-body">
+    <h5 class="card-title">Búsqueda sin éxito</h5>
+    <p class="card-text">No existen viajes para el término de la búsqueda o no existen viajes registrados</p>
+  </div>
+</div> <!-- card.// -->
