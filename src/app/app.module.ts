@@ -39,6 +39,7 @@ import { ApplicationEditComponent } from './components/entities/aplications/appl
 import { NotFoundComponent } from './components/master/not-found/not-found.component';
 import { CookieService} from 'ngx-cookie-service';
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
+import { DisplayComponent } from './components/entities/display/display.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -103,7 +104,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApplicationListComponent,
     ApplicationEditComponent,
     NotFoundComponent,
-    TermsAndConditionsComponent
+    TermsAndConditionsComponent,
+    DisplayComponent
   ],
   exports: [
     RouterModule

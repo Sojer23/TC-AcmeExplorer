@@ -24,10 +24,10 @@
           <var class="price h3 text-warning">
             <span class="num">{{trip.price}}</span><span class="currency">€</span>
           </var>
-          <span>/por persona</span>
+          <span> / {{'entities.trips.details.per' | translate}}</span>
         </div> <!-- price-detail-wrap .// -->
         <dl>
-          <dt>Descripción</dt>
+          <dt>{{'entities.trips.details.description' | translate}}</dt>
           <dd>
             <p>{{trip.description}}</p>
           </dd>
@@ -56,7 +56,7 @@
             <mat-icon style="color: #ffd900;" *ngIf="trip.totalStars >= 5">star</mat-icon>
             <mat-icon style="color: #b2b6bd;" *ngIf="!(trip.totalStars >= 5)">star_border</mat-icon>
           </div>
-          <div class="col-sm label-rating" *ngIf="trip?.comments">{{trip.comments.length}} comentarios</div>
+          <div class="col-sm label-rating" *ngIf="trip?.comments">{{trip.comments.length}} {{'entities.trips.details.comments' | translate}}</div>
         </div> <!-- rating-wrap.// -->
         <hr>
         <!-- <div class="row">
@@ -74,12 +74,12 @@
           </div>
         </div> -->
         <a *ngIf="!apply && this.authService.checkRole('EXPLORER|anonymous')" (click)="apply = true" class="btn  btn-outline-primary">
-          <mat-icon>shopping_cart</mat-icon> Solicitar reserva
+          <mat-icon>shopping_cart</mat-icon> {{'entities.trips.details.book' | translate}}
         </a>
         <form (ngSubmit)="applyForATrip(f, trip['_id'])" #f="ngForm">
-          <textarea type="password" class="form-control" *ngIf="apply" class="form-control" name="comment" placeholder="Escribe un comentario..." rows="3" ngModel></textarea>
+          <textarea type="password" class="form-control" *ngIf="apply" class="form-control" name="comment" placeholder="{{'entities.trips.details.comment' | translate}}" rows="3" ngModel></textarea>
           <button type="submit" *ngIf="apply" class="btn  btn-outline-primary">
-            <mat-icon>shopping_cart</mat-icon> Enviar
+            <mat-icon>shopping_cart</mat-icon> {{'entities.trips.details.send' | translate}}
           </button>
         </form>
 
@@ -95,12 +95,12 @@
       <div class="comment-wrapper">
         <div class="panel panel-info">
           <div class="panel-heading">
-            Comentarios del viaje
+              {{'entities.trips.details.commentsSection.title' | translate}}
           </div>
           <div class="panel-body">
-            <textarea class="form-control" placeholder="Escribe un comentario..." rows="3"></textarea>
+            <textarea class="form-control" placeholder="{{'entities.trips.details.comment' | translate}}" rows="3"></textarea>
             <br>
-            <button type="button" class="btn btn-info pull-right">Nuevo Comentario</button>
+            <button type="button" class="btn btn-info pull-right">{{'entities.trips.details.commentsSection.new' | translate}}</button>
             <div class="clearfix"></div>
             <hr>
             <ul class="media-list">

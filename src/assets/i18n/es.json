@@ -68,10 +68,50 @@
                     "evaluation": "Valoración",
                     "actions": "Acciones"
                 }
+            },
+            "details":{
+                "per": "por persona",
+                "description": "Descripción",
+                "comments": "comentarios",
+                "book": "Solicitar Reserva",
+                "comment": "Escribe un comentario...",
+                "send": "Enviar Solicitud",
+                "commentsSection":{
+                    "title":"Comentarios del Viaje",
+                    "new": "Nuevo comentario"
+                }
             }
         },
         "actors": {},
-        "applications": {}
+        "applications": {
+            "list":{
+                "main":{
+                    "title": "Mis Reservas",
+                    "show": "Mostrando",
+                    "applications": "reservas"
+                },
+                "noApplicationsCard":{
+                },
+                "tableColums":{
+                    "applications": "Reservas",
+                    "price": "Precio",
+                    "status": "Estado",
+                    "action": "Acción"
+                },
+                "details":{
+                    "textBook": "Reserva para el viaje:",
+                    "comment": "Comentario:",
+                    "date": "Fecha de la reserva:",
+                    "id": "Identificador de la reserva",
+                    "per": "por persona",
+                    "pay": "Pagar",
+                    "cancel": "Cancelar",
+                    "evaluation": "A la espera de evaluación",
+                    "bookingCancelled": "Reserva cancelada",
+                    "cancelledReason": "Motivo de cancelación"
+                }
+            }
+        }
     },
     "header": {
         "regard": "Hola, ",
@@ -92,12 +132,17 @@
             "profile": {
                 "profile": "Perfil",
                 "edit": "Editar Perfil",
+                "newUser": "Nuevo Usuario",
                 "sesion": "Cerrar sesión"
+            },
+            "display":{
+                "main": "Panel de control"
             }
         }
     },
     "footer": {
-        "dev": "Desarrollado con ❤️ por "
+        "dev": "Desarrollado con ❤️ por ",
+        "terms": "Términos y Condiciones"
     },
     "deny": {
         "text1": "¡No hay forma de que ",

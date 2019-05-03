@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <form (ngSubmit)="searchTrips(f)" #f="ngForm" class="form-horizontal" role="form">
         <div class="input-group" id="adv-search">
-          <input type="search" name="keyword" class="form-control" placeholder="{{'entities.trips.search'| translate}}"
+          <input id="searchTrip" type="search" name="keyword" class="form-control" placeholder="{{'entities.trips.search'| translate}}"
             ngModel>
 
           <button type="submit" class="btn my-2 my-sm-0" style="background-color:#232f3e">
@@ -124,7 +124,7 @@
 
 
 
-<table datatable class="row-border hover" style="margin-top: 50px; margin-bottom: 100px"
+<table datatable [dtOptions]="dtOptions" dt-columns="dtColumns" class="row-border hover" style="margin-top: 50px; margin-bottom: 100px"
   *ngIf="this.authService.checkRole('ADMINISTRATOR|MANAGER') && this.trips.length != 0">
   <thead>
     <tr>
@@ -137,8 +137,8 @@
       <th scope="col">{{'entities.trips.adminTable.header.actions'| translate}}</th>
     </tr>
   </thead>
-  <tbody *ngFor="let trip of trips; let i = index">
-    <tr>
+  <tbody>
+    <tr *ngFor="let trip of trips; let i = index">
       <th scope="row"><a [routerLink]="['/trips/display', trip._id]">{{trip.ticker}}</a></th>
       <th scope="row">{{trip.title}}</th>
       <th scope="row">{{trip.description}}</th>

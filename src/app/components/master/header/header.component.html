@@ -56,6 +56,14 @@
           </ul>
         </li>
       </ul>
+      <!-- Dashboard -->
+      <ul class="navbar-nav" *ngIf="this.authService.checkRole('EXPLORER|ADMINISTRATOR|MANAGER')">
+        <li class="nav-item dropdown" *ngIf="this.authService.checkRole('ADMINISTRATOR')" style="margin-right: 10px">
+          <a style="color:aliceblue; cursor:pointer"  routerLink="/dashboard">
+            <b>{{'header.menu.display.main'| translate}}</b><b class="caret"></b>
+          </a>
+        </li>
+      </ul>
       <form (ngSubmit)="searchTrips(f)" #f="ngForm" class="form-inline mx-auto">
         <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="{{'header.search'| translate}}"
           aria-label="Search" ngModel>
@@ -99,9 +107,9 @@
             </li>
             <li class="divider"></li>
             <li class="nav-item" *ngIf="currentActor.role == 'ADMINISTRATOR'">
-              <a class="dropdown-item" style="color:rgb(226, 75, 37); font-weight: bold; cursor:pointer"
+              <a class="dropdown-item" style="color:rgba(33, 134, 19, 0.822); font-weight: bold; cursor:pointer"
                 routerLink="/register">
-                <mat-icon>power_off</mat-icon>Registrar nuevo usuario
+                <mat-icon>fiber_new</mat-icon>{{'header.menu.profile.newUser'| translate}}
               </a>
             </li>
             <li class="divider"></li>

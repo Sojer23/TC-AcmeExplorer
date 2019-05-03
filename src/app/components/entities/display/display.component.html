@@ -1,0 +1,132 @@
+<div class="container" style="margin-bottom: 30px">
+  <div class="row">
+    <div class="col-md-6">
+      <button (click)="this.getAllComputations()" class="btn my-2 my-sm-0" style="background-color:#232f3e">
+        <mat-icon style="color:aliceblue">assessment</mat-icon><span
+         style="color:aliceblue">Ver todos los registros</span>
+      </button>
+    </div>
+    <div class="col md-6">
+      <button (click)="this.ngOnInit()" class="btn my-2 my-sm-0"
+        style="background-color:#232f3e;">
+        <mat-icon style="color:aliceblue">assessment</mat-icon><span style="color:aliceblue">Ver último registro</span>
+      </button>
+    </div>
+  </div>
+</div>
+<h4>Panel de control</h4>
+
+<h6 *ngIf="this.computation">Mostrando el último registro estadístico. Fecha:
+  {{computation.computationMoment.substring(0,19)}}</h6>
+<h6 *ngIf="this.computations.length > 0">Mostrando <b>{{computations.length}}</b> registros estadísticos</h6>
+
+<div class="container" *ngIf="this.computation">
+  <h5 style="margin-top:50px;">Ratio de aplicaciones por estado</h5>
+  <div *ngIf="this.computation.applicationsRatioPerStatus" class="card" style="margin-bottom:30px;">
+    <table class="table table-hover shopping-cart-wrap">
+      <thead class="text-muted">
+        <tr>
+          <th scope="col" width="120">ACCEPTED</th>
+          <th scope="col" width="120">CANCELLED</th>
+          <th scope="col" width="120">DUE</th>
+          <th scope="col" width="120">PENDING</th>
+          <th scope="col" width="120">REJECTED</th>
+          <th scope="col" width="120">Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.ACCEPTED}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.CANCELLED}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.DUE}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.PENDING}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.REJECTED}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsRatioPerStatus.ratio}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- card.// -->
+
+  <h5 style="margin-top:50px;">Estadísticas de aplicaciones por viaje</h5>
+  <div *ngIf="this.computation.applicationsTripStats" class="card" style="margin-bottom:30px;">
+    <table class="table table-hover shopping-cart-wrap">
+      <thead class="text-muted">
+        <tr>
+          <th scope="col" width="120">AVG</th>
+          <th scope="col" width="120">MAX</th>
+          <th scope="col" width="120">MIN</th>
+          <th scope="col" width="120">DESVIACIÓN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>{{this.computation.applicationsTripStats.avg}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsTripStats.max}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsTripStats.min}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.applicationsTripStats.stdev}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- card.// -->
+
+  <h5 style="margin-top:50px;">Estadísticas de viajes gestionados por Managers</h5>
+  <div *ngIf="this.computation.tripsManagerStats" class="card" style="margin-bottom:30px;">
+    <table class="table table-hover shopping-cart-wrap">
+      <thead class="text-muted">
+        <tr>
+          <th scope="col" width="120">AVG</th>
+          <th scope="col" width="120">MAX</th>
+          <th scope="col" width="120">MIN</th>
+          <th scope="col" width="120">DESVIACIÓN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>{{this.computation.tripsManagerStats.avg}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.tripsManagerStats.max}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.tripsManagerStats.min}}</p>
+          </td>
+          <td>
+            <p>{{this.computation.tripsManagerStats.stdev}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- card.// -->
+</div>
+
+<div class="container" *ngIf="this.computations.length !=0">
+    <div class="card text-white bg-warning mb-3">
+        <div class="card-header">Estamos trabajando en esta funcionalidad. Disculpe las molestias</div>
+        <div class="card-body">
+          <h5 class="card-title">Pronto estará disponible</h5>
+          <p class="card-text">Podrá consultar todos los registros estadísticos calculados por el sistema.</p>
+        </div>
+      </div> <!-- card.// -->
+  
+</div>

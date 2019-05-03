@@ -68,10 +68,50 @@
                     "price": "Price",
                     "actions": "Acctions"
                 }
+            },
+            "details":{
+                "per": "per person",
+                "description": "Description",
+                "comments": "comments",
+                "book": "Request Booking",
+                "comment": "Write a comment...",
+                "send": "Send Request",
+                "commentsSection":{
+                    "title":"Trip Comments",
+                    "new": "New comment"
+                }
             }
         },
         "actors": {},
-        "applications": {}
+        "applications": {
+            "list":{
+                "main":{
+                    "title": "My Applications",
+                    "show": "Showing",
+                    "applications": "applications"
+                },
+                "noApplicationsCard":{
+                },
+                "tableColums":{
+                    "applications": "Applications",
+                    "price": "Price",
+                    "status": "Status",
+                    "action": "Action"
+                },
+                "details":{
+                    "textBook": "Application for the trip:",
+                    "comment": "Comment:",
+                    "date": "Date of application:",
+                    "id": "Id of application",
+                    "per": "per person",
+                    "pay": "Pay",
+                    "cancel": "Cancel",
+                    "evaluation": "Waiting for evaluation",
+                    "bookingCancelled": "Application Cancelled",
+                    "cancelledReason": "Cancelled Reason"
+                }
+            }
+        }
     },
     "header": {
         "regard": "Hello, ",
@@ -92,12 +132,17 @@
             "profile": {
                 "profile": "Profile",
                 "edit": "Edit Profile",
+                "newUser": "New User",
                 "sesion": "Log Out"
+            },
+            "display":{
+                "main": "Dashboard"
             }
         }
     },
     "footer": {
-        "dev": "Developed with ❤️ by "
+        "dev": "Developed with ❤️ by ",
+        "terms": "Terms and Conditions"
     },
     "deny": {
         "text1": "There is no way Immma ",

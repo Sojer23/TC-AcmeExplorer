@@ -1,6 +1,6 @@
-<h4>Mis Reservas</h4>
+<h4>{{'entities.applications.list.main.title'| translate}}</h4>
 
-<h6>Mostrando <b>{{applications.length}}</b> reservas</h6>
+<h6>{{'entities.applications.list.main.show'| translate}} <b>{{applications.length}}</b> {{'entities.applications.list.main.applications'| translate}}</h6>
 
 <div  *ngIf="this.applications.length == 0" class="card text-white bg-success mb-3">
   <div class="card-header">🏃‍♂️¡Corre que vuelan!✈️</div>
@@ -14,10 +14,10 @@
   <table class="table table-hover shopping-cart-wrap">
     <thead class="text-muted">
       <tr>
-        <th scope="col">Reservas</th>
-        <th scope="col" width="120">Precio</th>
-        <th scope="col" width="120">Estado</th>
-        <th scope="col" width="250" class="text-right">Acción</th>
+        <th scope="col">{{'entities.applications.list.tableColums.applications'| translate}}</th>
+        <th scope="col" width="120">{{'entities.applications.list.tableColums.price'| translate}}</th>
+        <th scope="col" width="120">{{'entities.applications.list.tableColums.status'| translate}}</th>
+        <th scope="col" width="250" class="text-right">{{'entities.applications.list.tableColums.action'| translate}}</th>
       </tr>
     </thead>
     <tbody>
@@ -25,17 +25,17 @@
         <td>
           <figure class="media">
             <figcaption class="media-body">
-              <h6 class="title text-truncate">Reserva para el viaje: {{application.tripID}}</h6>
+              <h6 class="title text-truncate">{{'entities.applications.list.details.textBook'| translate}} {{application.tripID}}</h6>
               <dl class="dlist-inline small">
-                <dt>Comentario: </dt>
+                <dt>{{'entities.applications.list.details.comment'| translate}}</dt>
                 <dd>{{application.comments}}</dd>
               </dl>
               <dl class="dlist-inline small">
-                <dt>Fecha de reserva: </dt>
+                <dt>{{'entities.applications.list.details.date'| translate}} </dt>
                 <dd>{{application.dateApplication.substring(0,10)}}</dd>
               </dl>
               <dl class="dlist-inline small">
-                <dt>Identificador de reserva: </dt>
+                <dt>{{'entities.applications.list.details.id'| translate}} </dt>
                 <dd>{{application['_id']}}</dd>
               </dl>
             </figcaption>
@@ -44,7 +44,7 @@
         <td>
           <div class="price-wrap">
             <var class="price">XXX</var>
-            <small class="text-muted">(EUR / persona )</small>
+            <small class="text-muted">(EUR / {{'entities.applications.list.details.per'| translate}} )</small>
           </div> <!-- price-wrap .// -->
         </td>
         <td>
@@ -52,12 +52,12 @@
         </td>
         <td class="text-right">
           <a class="btn btn-outline-success" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
-            data-original-title="Save to Wishlist"> <i class="fa fa-paypal"></i> Pagar</a>
+            data-original-title="Save to Wishlist"> <i class="fa fa-paypal"></i> {{'entities.applications.list.details.pay'| translate}}</a>
           <a class="btn btn-outline-danger btn-round" *ngIf="application.status == 'ACCEPTED'" data-toggle="tooltip"
-            data-original-title="Save to Wishlist"> <i class="fa fa-times"></i> Cancelar</a>
-          <p *ngIf="application.status == 'PENDING'">A la espera de ser evaluada</p>
-          <p class="danger" *ngIf="application.status == 'CANCELLED'">Reserva cancelada</p>
-          <p *ngIf="application.status == 'CANCELLED'">Motivo de la cancelación</p>
+            data-original-title="Save to Wishlist"> <i class="fa fa-times"></i> {{'entities.applications.list.details.cancel'| translate}}</a>
+          <p *ngIf="application.status == 'PENDING'">{{'entities.applications.list.details.evaluation'| translate}}</p>
+          <p class="danger" *ngIf="application.status == 'CANCELLED'">{{'entities.applications.list.details.bookingCancelled'| translate}}</p>
+          <p *ngIf="application.status == 'CANCELLED'">{{'entities.applications.list.details.cancelledReason'| translate}}</p>
           <p class="danger" *ngIf="application.status == 'CANCELLED'">{{application.rejectionComment}}</p>
         </td>
       </tr>

@@ -80,3 +80,7 @@
 .cancelled{
     color: red
 }
+
+summary::-webkit-details-marker{
+    display: none
+}

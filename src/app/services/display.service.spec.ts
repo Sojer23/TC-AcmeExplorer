@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CanDeactivateGuard } from './can-deactivate.service';
+import { DisplayService } from './display.service';
 
-describe('CanDeactivateService', () => {
+describe('DisplayService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CanDeactivateGuard = TestBed.get(CanDeactivateGuard);
+    const service: DisplayService = TestBed.get(DisplayService);
     expect(service).toBeTruthy();
   });
 });

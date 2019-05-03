@@ -15,6 +15,7 @@ import { NotFoundComponent } from './components/master/not-found/not-found.compo
 import { ApplicationListComponent } from './components/entities/aplications/application-list/application-list.component';
 import { ApplicationComponent } from './components/entities/aplications/application/application.component';
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
+import { DisplayComponent } from './components/entities/display/display.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     
     { path: 'register', component: RegisterComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'anonymous|ADMINISTRATOR' } },
+    { path: 'dashboard', component: DisplayComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'ADMINISTRATOR' } },
     { path: 'deny', component: DeniedAccessPageComponent },
     {
         path: 'profile', children: [
