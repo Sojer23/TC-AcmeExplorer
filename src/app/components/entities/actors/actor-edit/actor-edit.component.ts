@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { existingPhoneNumberValidator } from 'src/app/validators/existingPhone.validator';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 //import { Picture } from 'src/app/models/picture.model';
 
 @Component({
@@ -17,8 +18,8 @@ import { Observable } from 'rxjs';
 })
 export class ActorEditComponent extends TranslatableComponent implements OnInit {
 
-  profileForm: FormGroup;
-  updated: boolean;
+  private profileForm: FormGroup;
+  private updated: boolean;
   actor: Actor;
   langList: string[];
   photoChanged = false;
@@ -28,9 +29,11 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
     private router: Router,
     private authService: AuthService,
     private actorService: ActorService,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private toastr: ToastrService) {
     super(translateService);
     this.langList = ["en","es"];
+    this.updated = false;
   }
 
   ngOnInit() {
@@ -38,11 +41,12 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
   }
 
   createForm() {
+    
     this.profileForm = this.fb.group({
       _id: [''],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: [''],
+      email: ['', Validators.required /*Validators.pattern('/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/')*/],
       phone: ['', Validators.pattern('[0-9]+')], /*[existingPhoneNumberValidator(this.actorService)]*/
       address: ['', Validators.maxLength(50)],
       preferredLanguage: ['', Validators.required],
@@ -52,7 +56,7 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
       //picture: ['']
     });
 
-    const idActor = this.authService.getCurrentActor()['_id'];
+    const idActor = this.authService.getCurrentActor().id;
 
     this.actorService.getActor(idActor).then((actor) => {
 
@@ -70,6 +74,7 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
         document.getElementById('showresult').textContent = actor.photoObject.Buffer;*/
       }
+
     });
   }
 
@@ -85,7 +90,8 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
     this.actorService.updateProfile(formModel).then((actor) => {
       console.log("Actor updated: " + actor.email);
-      this.router.navigate(['/']);
+      this.toastr.success('Compruebe sus cambios','Perfil editado correctamente');
+      this.router.navigate(['/profile']);
     }).catch((err) => {
       console.log(err);
     });
@@ -93,7 +99,13 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
 
   goBack(): void {
-    this.router.navigate(['/home']);
+    if(this.canDeactivate()){
+      console.log("Vuelve al perfil. Cambios cancelados");
+      this.router.navigate(['/profile']);
+    }else{
+      console.log("Vuelve a la edición sin guardar el perfil");
+      this.router.navigate(['/profile']);
+    }
   }
 
  /* onFileChange(event){
@@ -116,12 +128,14 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     let result = false;
-    const message = "Estás seguro?";
+    const message = this.translateService.instant('Va a descartar sus cambios. ¿Estás seguro?');
 
+    
     if(!this.updated && this.profileForm.dirty){
       result = confirm(message);
     }
 
+    console.log("Descarta los cambios: "+ result);
     return result;
   }
 

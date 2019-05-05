@@ -30,7 +30,7 @@ export class ActorComponent extends TranslatableComponent implements OnInit {
       //Recover id param
       this.id = this.route.snapshot.params['id'];
     }else{
-      this.id = this.authService.getCurrentActor()['_id'];
+      this.id = this.authService.getCurrentActor().id;
     }
 
 

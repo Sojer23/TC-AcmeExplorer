@@ -10,16 +10,15 @@
   <div class="d-flex justify-content-center h-100">
     <div class="register_card">
       <form [formGroup]="profileForm" (ngSubmit)="onEdit()">
-        <h2 style="text-align: center;">{{ 'security.registerForm.registerTitle' | translate }} <br><b>ACME-Explorer</b></h2>
-        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTitle' | translate }} <br>{{ 'security.registerForm.registerThirdTitle' | translate }}</p>
-        <div class="form-group has-danger">
-          <label for="role" class="form-control-label">{{ 'security.registerForm.registerRole' | translate }}:</label>
-          <select type="hidden" id="role" class="form-control" formControlName="role">
-            <option *ngFor="let role of roleList" [value]="role">
-              {{role}}
-            </option>
-          </select>
-        </div>
+        <h2 style="text-align: center;">{{ 'security.registerForm.registerTitle' | translate }} <br><b>ACME-Explorer</b>
+        </h2>
+        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTitle' | translate }}
+          <br>{{ 'security.registerForm.registerThirdTitle' | translate }}</p>
+
+          <input class="form-control" formControlName="_id" type="hidden">
+          <input class="form-control" formControlName="role" type="hidden">
+          <input class="form-control" formControlName="email" type="hidden">
+          <input class="form-control" formControlName="password" type="hidden">
 
         <!--Name-->
         <div class="input-group mb-3">
@@ -28,14 +27,14 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="name" formControlName="name" placeholder="{{ 'security.registerForm.registerName' | translate }}"
-            required="required">
+          <input type="text" class="form-control" name="name" formControlName="name"
+            placeholder="{{ 'security.registerForm.registerName' | translate }}" required="required">
         </div>
         <div *ngIf="profileForm.get('name').errors &&
             profileForm.get('name').touched &&
             profileForm.get('name').errors.required" class="text-danger">
-            Error de validación
-            </div>
+          Error de validación
+        </div>
         <!--Surname-->
         <div class="input-group mb-3">
           <div class="input-group-append">
@@ -43,18 +42,13 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="{{ 'security.registerForm.registerSurname' | translate }}"
-            required="required">
+          <input type="text" class="form-control" name="surname" formControlName="surname"
+            placeholder="{{ 'security.registerForm.registerSurname' | translate }}" required="required">
         </div>
-        <!--Email-->
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <mat-icon>email</mat-icon>
-            </span>
-          </div>
-          <input type="hidden" name="email" class="form-control" formControlName="email" placeholder="{{ 'security.registerForm.registerEmail' | translate }}"
-            required="required">
+        <div *ngIf="profileForm.get('surname').errors &&
+            profileForm.get('surname').touched &&
+            profileForm.get('surname').errors.required" class="text-danger">
+          Error de validación
         </div>
         <!--Phone-->
         <div class="input-group mb-3">
@@ -63,10 +57,14 @@
               <mat-icon>phone</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="{{ 'security.registerForm.registerPhone' | translate }}"
-            required="required">
+          <input type="text" class="form-control" name="phone" formControlName="phone"
+            placeholder="{{ 'security.registerForm.registerPhone' | translate }}" required="required">
         </div>
-
+        <div *ngIf="profileForm.get('phone').errors &&
+        profileForm.get('phone').touched &&
+        profileForm.get('phone').errors.pattern" class="text-danger">
+          Error de validación
+        </div>
         <!--Address-->
         <div class="input-group mb-3">
           <div class="input-group-append">
@@ -74,8 +72,13 @@
               <mat-icon>home</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="address" formControlName="address" placeholder="{{ 'security.registerForm.registerAddress' | translate }}"
-            required="required">
+          <input type="text" class="form-control" name="address" formControlName="address"
+            placeholder="{{ 'security.registerForm.registerAddress' | translate }}" required="required">
+        </div>
+        <div *ngIf="profileForm.get('address').errors &&
+        profileForm.get('address').touched &&
+        profileForm.get('address').errors.maxlength" class="text-danger">
+          Error de validación
         </div>
 
         <!--Preffered Language-->
@@ -88,26 +91,18 @@
           </select>
         </div>
 
-        <!--Password-->
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <mat-icon>vpn_key</mat-icon>
-            </span>
-          </div>
-          <input type="hidden" class="form-control" name="password" formControlName="password" placeholder="{{ 'security.registerForm.registerPassword' | translate }}"
-            required="required">
-        </div>
-
         <div class="form-group">
-          <label class="checkbox-inline"><input type="checkbox" required="required">{{ 'security.registerForm.registerTerms' | translate }}</label>
+          <label class="checkbox-inline"><input type="checkbox"
+              required="required">{{ 'security.registerForm.registerTerms' | translate }}</label>
         </div>
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button type="submit" name="button" [disabled]="profileForm.invalid" class="btn login_btn">{{ 'security.register' | translate }}</button>
+          <button type="submit" name="button" [disabled]="profileForm.invalid"
+             [ngClass]="{'login_btn_error': profileForm.invalid, 'btn': true, 'login_btn': !profileForm.invalid}">{{ 'security.register' | translate }}</button>
         </div>
-        <!-- <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-success btn-lg btn-block">Register Now</button>
-      </div> -->
+        <div class="form-group d-flex justify-content-center mt-3 login_container">
+          <button name="button" (click)="goBack()"
+            class="btn login_btn">Cancelar</button>
+        </div>
       </form>
       <div class="text-center">
         {{ 'security.loginForm.loginRemind' | translate }} <a routerLink="/login">{{ 'security.login' | translate }}</a>

@@ -7,6 +7,10 @@ body {
     padding-bottom: 3rem;
     color: #5a5a5a;
   }
+
+  .shadow{
+    text-shadow: 2px 2px rgb(31, 29, 29);
+  }
   
   
   /* CUSTOMIZE THE CAROUSEL
@@ -89,4 +93,6 @@ body {
       margin-top: 7rem;
     }
   }
+
+  
   

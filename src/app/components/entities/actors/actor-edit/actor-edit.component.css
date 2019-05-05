@@ -38,6 +38,13 @@ html {
 .form_container {
     margin-top: 40px;
 }
+
+.login_btn_error {
+    width: 100%;
+    background: #d64316 !important;
+    color: white !important;
+}
+
 .login_btn {
     width: 100%;
     background: #febd69 !important;
