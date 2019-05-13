@@ -99,12 +99,14 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
 
   goBack(): void {
-    if(this.canDeactivate()){
+    var result = this.canDeactivate();
+    console.log(result);
+    if(result){
       console.log("Vuelve al perfil. Cambios cancelados");
       this.router.navigate(['/profile']);
     }else{
       console.log("Vuelve a la edición sin guardar el perfil");
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/profile/edit']);
     }
   }
 
