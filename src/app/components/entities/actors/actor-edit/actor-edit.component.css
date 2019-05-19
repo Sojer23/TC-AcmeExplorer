@@ -5,16 +5,16 @@ html {
     height: 100%;
 }
 .register_card {
-    height: 900px;
-    width: 400px;
+    height: 600px;
+    width: 500px;
     margin-top: auto;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     background: #ffffff;
     position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -34,9 +34,6 @@ html {
     width: 130px;
     border-radius: 50%;
     border: 2px solid white;
-}
-.form_container {
-    margin-top: 40px;
 }
 
 .login_btn_error {

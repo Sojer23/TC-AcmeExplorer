@@ -1,4 +1,5 @@
 import {Entity} from './entity.model';
+import { Picture } from './picture.model';
 
 export class Actor extends Entity{
     _id: string;
@@ -14,7 +15,8 @@ export class Actor extends Entity{
     flatRatePaid: boolean;
     finderId: object;
     customToken: string;
-
+    photo: string;
+    photoObject: Picture;
     constructor(){
         super();
     }

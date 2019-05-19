@@ -47,7 +47,6 @@ export class ActorService {
       const body = JSON.stringify(actor);
       const url = this.actorsUrl+"/"+actor['_id'];
 
-      console.log(actor);
       this.http.put(url,body, httpOptions).toPromise().then((actor)=>{
         res(actor);
       }, err => {

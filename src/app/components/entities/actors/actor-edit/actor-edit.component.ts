@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { existingPhoneNumberValidator } from 'src/app/validators/existingPhone.validator';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Picture } from 'src/app/models/picture.model';
 //import { Picture } from 'src/app/models/picture.model';
 
 @Component({
@@ -52,8 +53,8 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
       preferredLanguage: ['', Validators.required],
       password: [''],
       role: [''],
-      //photo: [''],
-      //picture: ['']
+      photo: [''],
+      picture: ['']
     });
 
     const idActor = this.authService.getCurrentActor().id;
@@ -70,9 +71,9 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
         this.profileForm.controls['address'].setValue(actor.address);
         this.profileForm.controls['role'].setValue(actor.role);
         this.profileForm.controls['preferredLanguage'].setValue(actor.preferredLanguage);
-        /*this.picture = actor.photoObject.Buffer;
+        this.picture = actor.photoObject.Buffer;
 
-        document.getElementById('showresult').textContent = actor.photoObject.Buffer;*/
+        document.getElementById('showresult').textContent = actor.photoObject.Buffer;
       }
 
     });
@@ -81,12 +82,12 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
   onEdit() {
     const formModel = this.profileForm.value;
 
-    /*if(this.photoChanged){
+    if(this.photoChanged){
+      console.log("IMAGEN SUBIDA");
       formModel.photoObject = new Picture();
       formModel.photoObject.Buffer = document.getElementById('showresult').textContent;
       formModel.photoObject.contentType = 'image/png';
-
-    }*/
+    }
 
     this.actorService.updateProfile(formModel).then((actor) => {
       console.log("Actor updated: " + actor.email);
@@ -110,7 +111,7 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
     }
   }
 
- /* onFileChange(event){
+ onFileChange(event){
     const reader = new FileReader();
     const showout = document.getElementById('showresult');
     let res;
@@ -121,11 +122,11 @@ export class ActorEditComponent extends TranslatableComponent implements OnInit 
 
       reader.addEventListener('loadend', function(){
         res = reader.result;
-        showout.textContent = this.result;
+        showout.textContent = this.result.toString();
       });
       reader.readAsDataURL(file);
     }
-  }*/
+  }
 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { NgForm } from '@angular/forms';
+import { ActorService } from 'src/app/services/actor.service';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
 
   currentActor: Actor;
   activeRole = "anonymous";
+  picture: string;
 
   constructor(private translateService: TranslateService,
     private authService: AuthService,
     private tripService: TripService,
+    private actorService: ActorService,
     private router: Router,
     private toastr: ToastrService) {
     super(translateService);
@@ -39,6 +42,10 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         this.currentActor = this.authService.getCurrentActor();
         if (this.currentActor) {
           this.activeRole = this.currentActor.role.toString();
+          this.picture = this.currentActor.photoObject.Buffer;
+          /*this.actorService.getActor(this.currentActor.id).then((actor)=>{
+            this.picture = actor.photoObject.Buffer;
+          });*/
           console.log("Current Role: " + this.activeRole);
         }
       } else {

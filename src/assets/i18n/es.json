@@ -22,10 +22,17 @@
             "registerEmail": "Correo electrónico",
             "registerPhone": "Teléfono",
             "registerAddress": "Dirección",
+            "registerPhoto": "Foto de perfil",
             "registerPassword": "Contraseña",
             "registerTitle": "Registrate en",
             "registerSecondTitle": "¡Crea tu cuenta!",
             "registerThirdTitle": "Es gratis y podrás disfrutar de muchas ofertas"
+        },
+        "edit": "Editar Perfil",
+        "cancel": "Cancelar",
+        "editProfileForm":{
+            "editTitle": "Edición de Perfil",
+            "editSecondTitle": "Asegúrate de tus cambios"
         }
     },
     "entities": {
@@ -148,5 +155,17 @@
         "text1": "¡No hay forma de que ",
         "text2": " Imma te deje pasar! ",
         "warning": "Acceso Prohibido."
+    },
+    "formValidation":{
+        "fieldRequired": "Por favor, introduzca un valor",
+        "number.valid": "Por favor, introduzca un valor numérico",
+        "number.positive": "Por favor, introduzca un valor positivo",
+        "number.max": "Por favor, introduzca un valor menor que {{maxvalue}}",
+        "number.min": "Por favor, introduzca un valor mayor que {{minvalue}}",
+        "email.valid": "Por favor, introduzca una dirección de email válida",
+        "pattern.numeric":"Por favor, introduzca únicamente dígitos numéricos",
+        "string.maxLength": "Por favor, introduzca un máximo de {{maxvalue}} caracteres",
+        "password.minlength":"La contraseña debe contener al menos 6 caracteres",
+        "select.value": "Seleccione un valor"
     }
 }

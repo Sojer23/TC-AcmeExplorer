@@ -127,7 +127,8 @@ export class AuthService {
             email: actor['email'],
             role: actor['role'],
             preferredLanguage: actor['preferredLanguage'],
-            imageUrl: actor['imageUrl']
+            imageUrl: actor['imageUrl'],
+            photoObject: actor['photoObject']
           }));
         }else{
           localStorage.removeItem('current_actor');

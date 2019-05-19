@@ -1,8 +1,10 @@
-/*export class Picture implements Deserializable{
+import { Deserializable } from "./deserializable.model";
+
+export class Picture implements Deserializable{
     Buffer: string;
     contentType: string;
 
-    deserializable(input:any){
+    deserialize(input:any){
         Object.assign(this, input);
         return this;
     }
@@ -13,4 +15,4 @@
             contentType: this.contentType
         }
     }
-}*/
+}

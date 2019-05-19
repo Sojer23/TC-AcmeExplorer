@@ -16,6 +16,7 @@ export class ActorComponent extends TranslatableComponent implements OnInit {
   actor = new Actor();
   id: string;
   starArray: boolean[];
+  picture: string;
 
   constructor(private route: ActivatedRoute,
     private translateService: TranslateService,
@@ -31,6 +32,9 @@ export class ActorComponent extends TranslatableComponent implements OnInit {
       this.id = this.route.snapshot.params['id'];
     }else{
       this.id = this.authService.getCurrentActor().id;
+      this.actorService.getActor(this.id).then((actor) => {
+        this.picture = actor.photoObject.Buffer;
+      });
     }
 
 

@@ -18,13 +18,28 @@
                 <div class="input-group-append">
                   <span class="input-group-text"><mat-icon>face</mat-icon></span>
                 </div>
-                <input type="email" name="email" class="form-control" value="" placeholder="{{ 'security.registerForm.registerEmail' | translate }}" ngModel>
+                <input class="form-control" type="email" ngModel id="email" name="email" required  value="" #email="ngModel" placeholder="{{ 'security.registerForm.registerEmail' | translate }}" >
+              </div>
+              <div *ngIf="email.invalid && (email.dirty || email.touched) 
+              && email.errors.required" class="text-danger">
+                {{'formValidation.fieldRequired' |translate}}
               </div>
               <div class="input-group mb-2">
                 <div class="input-group-append">
                   <span class="input-group-text"><mat-icon>vpn_key</mat-icon></span>
                 </div>
-                <input type="password" name="password" class="form-control" value="" placeholder="{{ 'security.registerForm.registerPassword' | translate }}" ngModel>
+                <input class="form-control" type="password" ngModel
+                id="password" name="password" required minlength="6" value="" #password="ngModel" placeholder="{{ 'security.registerForm.registerPassword' | translate }}" >
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched) &&
+              password.errors.required" class="text-danger">
+                {{'formValidation.fieldRequired' | translate}}
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)
+               && password.errors.minlength" class="text-danger">
+                {{'formValidation.password.minlength' | translate: { 
+                  minvalue: password.errors.minlength.requiredLength }
+              }}
               </div>
               <div class="d-flex justify-content-center mt-3 login_container">
                   <button type="submit" name="button" class="btn login_btn">{{'security.login'| translate}}</button>

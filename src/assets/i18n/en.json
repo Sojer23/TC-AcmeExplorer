@@ -22,10 +22,17 @@
             "registerEmail": "Email",
             "registerPhone": "Phone",
             "registerAddress": "Address",
+            "registerPhoto": "Profile Photo",
             "registerPassword": "Password",
             "registerTitle": "Sign up to",
             "registerSecondTitle": "Create your account!",
             "registerThirdTitle": "It's free and you can enjoy a lot of deals"
+        },
+        "edit": "Edit Profile",
+        "cancel": "Cancel",
+        "editProfileForm":{
+            "editTitle": "Profile Edition",
+            "editSecondTitle": "Be sure of your changes"
         }
     },
     "entities": {
@@ -148,5 +155,17 @@
         "text1": "There is no way Immma ",
         "text2": "let you pass through!",
         "warning": "Access Forbidden."
+    },
+    "formValidation":{
+        "fieldRequired": "Please, introduce a value",
+        "number.valid": "Please, introduce a number value",
+        "number.positive": "Please, introduce a positive value",
+        "number.max": "Please, introduce a value less than {{maxvalue}}",
+        "number.min": "Please, introduce a value bigger than {{minvalue}}",
+        "email.valid": "Please, introduce an valid email address",
+        "pattern.numeric":"Please, only digits are allowed in this field",
+        "string.maxLength": "Please, introduce a maximum of {{maxvalue}} characters",
+        "password.minlength":"The password need to be 6 characters or more",
+        "select.value": "Select a value"
     }
 }

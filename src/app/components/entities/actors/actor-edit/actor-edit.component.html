@@ -6,19 +6,17 @@
     integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 
-<div class="container h-100">
+<div class="container">
   <div class="d-flex justify-content-center h-100">
     <div class="register_card">
       <form [formGroup]="profileForm" (ngSubmit)="onEdit()">
-        <h2 style="text-align: center;">{{ 'security.registerForm.registerTitle' | translate }} <br><b>ACME-Explorer</b>
-        </h2>
-        <p style="text-align: center;">{{ 'security.registerForm.registerSecondTitle' | translate }}
-          <br>{{ 'security.registerForm.registerThirdTitle' | translate }}</p>
+        <h2 style="text-align: center;">{{ 'security.editProfileForm.editTitle' | translate }} <br></h2>
+        <p style="text-align: center;">{{ 'security.editProfileForm.editSecondTitle' | translate }}</p>
 
-          <input class="form-control" formControlName="_id" type="hidden">
-          <input class="form-control" formControlName="role" type="hidden">
-          <input class="form-control" formControlName="email" type="hidden">
-          <input class="form-control" formControlName="password" type="hidden">
+        <input class="form-control" formControlName="_id" type="hidden">
+        <input class="form-control" formControlName="role" type="hidden">
+        <input class="form-control" formControlName="email" type="hidden">
+        <input class="form-control" formControlName="password" type="hidden">
 
         <!--Name-->
         <div class="input-group mb-3">
@@ -33,7 +31,7 @@
         <div *ngIf="profileForm.get('name').errors &&
             profileForm.get('name').touched &&
             profileForm.get('name').errors.required" class="text-danger">
-          Error de validación
+          {{'formValidation.fieldRequired' | translate}}
         </div>
         <!--Surname-->
         <div class="input-group mb-3">
@@ -48,7 +46,7 @@
         <div *ngIf="profileForm.get('surname').errors &&
             profileForm.get('surname').touched &&
             profileForm.get('surname').errors.required" class="text-danger">
-          Error de validación
+          {{'formValidation.fieldRequired' | translate}}
         </div>
         <!--Phone-->
         <div class="input-group mb-3">
@@ -63,7 +61,7 @@
         <div *ngIf="profileForm.get('phone').errors &&
         profileForm.get('phone').touched &&
         profileForm.get('phone').errors.pattern" class="text-danger">
-          Error de validación
+          {{'formValidation.pattern.numeric' | translate}}
         </div>
         <!--Address-->
         <div class="input-group mb-3">
@@ -72,13 +70,14 @@
               <mat-icon>home</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="address" formControlName="address"
+          <input type="text" class="form-control" name="address" size="55" formControlName="address"
             placeholder="{{ 'security.registerForm.registerAddress' | translate }}" required="required">
         </div>
         <div *ngIf="profileForm.get('address').errors &&
         profileForm.get('address').touched &&
         profileForm.get('address').errors.maxlength" class="text-danger">
-          Error de validación
+          {{'formValidation.string.maxLength' | translate: {maxvalue: profileForm.get('address').errors.maxlength.requiredLength}
+        }}
         </div>
 
         <!--Preffered Language-->
@@ -91,22 +90,31 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label class="checkbox-inline"><input type="checkbox"
-              required="required">{{ 'security.registerForm.registerTerms' | translate }}</label>
+        <!--Profile Photo-->
+        <label class="center-block">{{ 'security.registerForm.registerPhoto' | translate }}:</label>
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>camera</mat-icon>
+            </span>
+          </div>
+          <input type="file" class="form-control" name="photo" (change)="onFileChange($event)" formControlName="photo">
         </div>
+        <img *ngIf="picture != null" class="card-img-top img-fluid"
+          style="display:block; object-fit:contain;" src="{{picture}}">
+          <img *ngIf="picture === null" class="card-img-top img-fluid"
+          style="width:50%; display: block; object-fit:contain;" src="http://www.propertybazaar.com/content/img/no-user-Image.png">
+
+          <textarea id="showresult" hidden="true"></textarea>
+
         <div class="form-group d-flex justify-content-center mt-3 login_container">
           <button type="submit" name="button" [disabled]="profileForm.invalid"
-             [ngClass]="{'login_btn_error': profileForm.invalid, 'btn': true, 'login_btn': !profileForm.invalid}">{{ 'security.register' | translate }}</button>
+            [ngClass]="{'login_btn_error': profileForm.invalid, 'btn': true, 'login_btn': !profileForm.invalid}">{{ 'security.edit' | translate }}</button>
         </div>
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button name="button" (click)="goBack()"
-            class="btn login_btn">Cancelar</button>
+          <button name="button" (click)="goBack()" class="btn login_btn">{{ 'security.cancel' | translate }}</button>
         </div>
       </form>
-      <div class="text-center">
-        {{ 'security.loginForm.loginRemind' | translate }} <a routerLink="/login">{{ 'security.login' | translate }}</a>
-      </div>
     </div>
   </div>
 </div>

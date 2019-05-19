@@ -40,9 +40,6 @@ export class LoginComponent extends TranslatableComponent{
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home'
 
     if(!email){
-      this.toastr.error('','Debes introducir un email.',{
-        timeOut: 3000
-      });
     }
 
     const password = form.value.password;
