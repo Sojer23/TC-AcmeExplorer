@@ -40,6 +40,8 @@ import { NotFoundComponent } from './components/master/not-found/not-found.compo
 import { CookieService} from 'ngx-cookie-service';
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { DisplayComponent } from './components/entities/display/display.component';
+import { AgmCoreModule} from '@agm/core';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -65,6 +67,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     HttpClientModule,
     HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBdS9obJfDQjOa7jF8_4McmGxIIgPyknzA',
+      libraries: ['places']
+    }),
     ReactiveFormsModule, 
     DataTablesModule,
     InfiniteScrollModule,

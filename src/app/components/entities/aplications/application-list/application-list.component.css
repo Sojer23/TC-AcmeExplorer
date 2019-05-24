@@ -1,3 +1,12 @@
 .accepted {
     background-color: rgba(14, 133, 67, 0.445);
 }
+.rejected {
+    background-color: rgba(104, 107, 106, 0.432);
+}
+.due {
+    background-color: rgba(221, 189, 10, 0.61);
+}
+.rejected-month {
+    background-color: rgba(221, 42, 10, 0.753);
+}

@@ -7,7 +7,10 @@ export class Application extends Entity{
     comments: string;
     explorerId: string;
     tripId: string;
+    managerId: string;
     dateApplication: number;
+    applicationPrice: number;
+    applicationDestiny: string;
 
     constructor(){
         super();

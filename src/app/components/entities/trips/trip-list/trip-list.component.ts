@@ -42,39 +42,47 @@ export class TripListComponent extends TranslatableComponent implements OnDestro
   ngOnInit() {
 
     if (this.tripService.trips.length == 0) {
-      this.tripService.getTrips().then(trips => {
 
-        // this.dtOptions = {
-        //   pagingType: 'full_numbers',
-        //   pageLength: 2
-        // };
+      if (this.authService.checkRole("MANAGER")) {
+        this.trips = [];
+        this.tripService.getManagerTrips(this.authService.getCurrentActor().id).then((trips)=>{
+          this.trips = trips;
+        })
+      } else {
+        this.tripService.getTrips().then(trips => {
 
-        console.log("Rendering " + trips.length + " trips.");
+          // this.dtOptions = {
+          //   pagingType: 'full_numbers',
+          //   pageLength: 2
+          // };
 
-        if (trips.length == 0) {
-          this.trips = [];
-          this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
-            timeOut: 3000
-          });
-        } else {
-          if (this.authService.checkRole("anonymous") || this.authService.checkRole("EXPLORER")) {
+          console.log("Rendering " + trips.length + " trips.");
+
+          if (trips.length == 0) {
             this.trips = [];
-            trips.forEach(trip => {
-              if (trip.status == "PUBLISHED") {
-                this.trips.push(trip);
-              } else {
-                //this.trips = [];
-              }
+            this.toastr.warning("Vuelve más tarde", 'No existen viajes registrados', {
+              timeOut: 3000
             });
           } else {
-            this.trips = trips;
-            // Calling the DT trigger to manually render the table
-            //this.dtTrigger.next();
-          }
+            if (this.authService.checkRole("anonymous") || this.authService.checkRole("EXPLORER")) {
+              this.trips = [];
+              trips.forEach(trip => {
+                if (trip.status == "PUBLISHED") {
+                  this.trips.push(trip);
+                } else {
+                  //this.trips = [];
+                }
+              });
+            } else {
+              this.trips = trips;
+              // Calling the DT trigger to manually render the table
+              //this.dtTrigger.next();
+            }
 
-          console.log("Showing " + this.trips.length + " published trips.");
-        }
-      });
+            console.log("Showing " + this.trips.length + " published trips.");
+          }
+        });
+      }
     }
   }
 

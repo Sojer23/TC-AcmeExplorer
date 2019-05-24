@@ -31,6 +31,19 @@ export class TripService {
     });
   }
 
+  getManagerTrips(managerId) {
+    return new Promise<any>((res, rej) => {
+      console.log("Getting manager trips...");
+      const url = this.tripsUrl+"/manager/"+managerId;
+      this.http.get(url, httpOptions).toPromise().then((trips) => {
+        res(trips);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+    });
+  }
+
   getTripsBySearch(beginFrom: number, pageSize: number, sortedBy: string, backwards: boolean, keyword:string){
     return new Promise<any>((res,rej)=>{
       console.log("Getting trips by keyword: "+ keyword);

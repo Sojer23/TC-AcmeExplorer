@@ -1,8 +1,9 @@
 <h4>{{'entities.applications.list.main.title'| translate}}</h4>
 
-<h6>{{'entities.applications.list.main.show'| translate}} <b>{{applications.length}}</b> {{'entities.applications.list.main.applications'| translate}}</h6>
+<h6>{{'entities.applications.list.main.show'| translate}} <b>{{applications.length}}</b>
+  {{'entities.applications.list.main.applications'| translate}}</h6>
 
-<div  *ngIf="this.applications.length == 0" class="card text-white bg-success mb-3">
+<div *ngIf="this.applications.length == 0" class="card text-white bg-success mb-3">
   <div class="card-header">🏃‍♂️¡Corre que vuelan!✈️</div>
   <div class="card-body">
     <h5 class="card-title">Aún no tienes viajes reservados</h5>
@@ -10,22 +11,25 @@
   </div>
 </div> <!-- card.// -->
 
-<div  *ngIf="this.applications.length != 0" class="card" style="margin-bottom:100px;margin-top:50px">
-  <table class="table table-hover shopping-cart-wrap">
+<div *ngIf="this.applications.length != 0" class="card" style="margin-bottom:100px;margin-top:50px">
+  <table class="table shopping-cart-wrap">
     <thead class="text-muted">
       <tr>
         <th scope="col">{{'entities.applications.list.tableColums.applications'| translate}}</th>
         <th scope="col" width="120">{{'entities.applications.list.tableColums.price'| translate}}</th>
         <th scope="col" width="120">{{'entities.applications.list.tableColums.status'| translate}}</th>
-        <th scope="col" width="250" class="text-right">{{'entities.applications.list.tableColums.action'| translate}}</th>
+        <th scope="col" width="250" class="text-right">{{'entities.applications.list.tableColums.action'| translate}}
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let application of applications; let i = index" [ngClass]="{'accepted': application.status == 'ACCEPTED'}">
+      <tr *ngFor="let application of applications; let i = index"
+        [ngClass]="{'accepted': application.status == 'ACCEPTED', 'rejected': application.status == 'REJECTED', 'due': application.status == 'DUE'}">
         <td>
           <figure class="media">
             <figcaption class="media-body">
-              <h6 class="title text-truncate">{{'entities.applications.list.details.textBook'| translate}} {{application.tripID}}</h6>
+              <h6 class="title text-truncate">{{'entities.applications.list.details.textBook'| translate}}
+                {{application.applicationDestiny}}</h6>
               <dl class="dlist-inline small">
                 <dt>{{'entities.applications.list.details.comment'| translate}}</dt>
                 <dd>{{application.comments}}</dd>
@@ -43,22 +47,37 @@
         </td>
         <td>
           <div class="price-wrap">
-            <var class="price">XXX</var>
+            <var class="price" *ngIf="application.applicationPrice"><b>{{application.applicationPrice}} € </b></var>
+            <var class="price" *ngIf="!application.applicationPrice"><b>XX,XX € </b></var>
             <small class="text-muted">(EUR / {{'entities.applications.list.details.per'| translate}} )</small>
           </div> <!-- price-wrap .// -->
         </td>
         <td>
           <var class="price">{{application.status}}</var>
         </td>
-        <td class="text-right">
-          <a class="btn btn-outline-success" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
-            data-original-title="Save to Wishlist"> <i class="fa fa-paypal"></i> {{'entities.applications.list.details.pay'| translate}}</a>
-          <a class="btn btn-outline-danger btn-round" *ngIf="application.status == 'ACCEPTED'" data-toggle="tooltip"
-            data-original-title="Save to Wishlist"> <i class="fa fa-times"></i> {{'entities.applications.list.details.cancel'| translate}}</a>
+        <td class="text-right" *ngIf="role == 'EXPLORER'">
+          <a class="btn btn-outline-info" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist"  (click)="payApplication(application['_id'])"> <i class="fa fa-paypal"></i>
+            {{'entities.applications.list.details.pay'| translate}}</a>
+          <a class="btn btn-outline-danger btn-round" *ngIf="application.status == 'ACCEPTED' || application.status == 'PENDING'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist" (click)="cancelApplication(application['_id'])"> <i class="fa fa-times"></i>
+            {{'entities.applications.list.details.cancel'| translate}}</a>
           <p *ngIf="application.status == 'PENDING'">{{'entities.applications.list.details.evaluation'| translate}}</p>
-          <p class="danger" *ngIf="application.status == 'CANCELLED'">{{'entities.applications.list.details.bookingCancelled'| translate}}</p>
-          <p *ngIf="application.status == 'CANCELLED'">{{'entities.applications.list.details.cancelledReason'| translate}}</p>
+          <p class="danger" *ngIf="application.status == 'CANCELLED'">
+            {{'entities.applications.list.details.bookingCancelled'| translate}}</p>
+          <p *ngIf="application.status == 'CANCELLED'">
+            {{'entities.applications.list.details.cancelledReason'| translate}}</p>
           <p class="danger" *ngIf="application.status == 'CANCELLED'">{{application.rejectionComment}}</p>
+        </td>
+        <td class="text-right" *ngIf="role == 'ADMINISTRATOR' || role == 'MANAGER'">
+          <a class="btn btn-outline-success" *ngIf="application.status == 'PENDING'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist" (click)="acceptOrCancelApplication(application['_id'], 'DUE')"> <i class="fa fa-check-circle"></i>
+            {{'entities.applications.list.details.accept'| translate}}</a>
+          <a class="btn btn-outline-danger" *ngIf="application.status == 'PENDING'" data-toggle="tooltip"
+            data-original-title="Save to Wishlist" (click)="acceptOrCancelApplication(application['_id'], 'REJECTED')"> <i class="fa fa-times-circle"></i>
+            {{'entities.applications.list.details.reject'| translate}}</a>
+            <p *ngIf="application.status == 'DUE'">
+            {{'entities.applications.list.details.payment'| translate}}</p>
         </td>
       </tr>
     </tbody>

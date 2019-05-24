@@ -30,17 +30,21 @@ export class ActorComponent extends TranslatableComponent implements OnInit {
     if (this.id) {
       //Recover id param
       this.id = this.route.snapshot.params['id'];
-    }else{
+      this.actorService.getActor(this.id).then((actor) => {
+        this.picture = actor.photoObject.Buffer;
+      });
+    } else {
       this.id = this.authService.getCurrentActor().id;
       this.actorService.getActor(this.id).then((actor) => {
+        this.actor = actor;
         this.picture = actor.photoObject.Buffer;
       });
     }
 
 
-    this.actor = this.authService.getCurrentActor();
+    //this.actor = this.authService.getCurrentActor();
     //Recover the item
-    
+
   }
 
 }

@@ -114,8 +114,11 @@
                     "pay": "Pay",
                     "cancel": "Cancel",
                     "evaluation": "Waiting for evaluation",
+                    "payment": "Waiting for payment",
                     "bookingCancelled": "Application Cancelled",
-                    "cancelledReason": "Cancelled Reason"
+                    "cancelledReason": "Cancelled Reason",
+                    "reject": "Reject",
+                    "accept": "Accept"
                 }
             }
         }

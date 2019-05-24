@@ -54,6 +54,15 @@ export class HeaderComponent extends TranslatableComponent implements OnInit {
         this.currentActor = null;
       }
     });
+
+    this.actorService.profileUpdated.subscribe((profileUpdated: boolean)=>{
+        if(profileUpdated){
+          this.actorService.getActor(this.currentActor.id).then((actor)=>{
+            this.currentActor = actor;
+            this.picture = actor.photoObject.Buffer;
+          })
+        }
+    });
   }
 
   logout() {

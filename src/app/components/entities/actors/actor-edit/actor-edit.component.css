@@ -5,7 +5,7 @@ html {
     height: 100%;
 }
 .register_card {
-    height: 600px;
+    height: 100%;
     width: 500px;
     margin-top: auto;
     margin-bottom: 100px;
@@ -68,3 +68,22 @@ html {
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #febd69 !important;
 }
+
+
+agm-map{
+    height: 300px;
+}
+
+a{
+    color: darkcyan;
+}
+
+.user {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border-color:  #232f3e;
+  
+    object-fit: cover;
+  }

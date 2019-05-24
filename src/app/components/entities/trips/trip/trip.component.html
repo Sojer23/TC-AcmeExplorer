@@ -76,7 +76,7 @@
         <a *ngIf="!apply && this.authService.checkRole('EXPLORER|anonymous')" (click)="apply = true" class="btn  btn-outline-primary">
           <mat-icon>shopping_cart</mat-icon> {{'entities.trips.details.book' | translate}}
         </a>
-        <form (ngSubmit)="applyForATrip(f, trip['_id'])" #f="ngForm">
+        <form (ngSubmit)="applyForATrip(f, trip)" #f="ngForm">
           <textarea type="password" class="form-control" *ngIf="apply" class="form-control" name="comment" placeholder="{{'entities.trips.details.comment' | translate}}" rows="3" ngModel></textarea>
           <button type="submit" *ngIf="apply" class="btn  btn-outline-primary">
             <mat-icon>shopping_cart</mat-icon> {{'entities.trips.details.send' | translate}}

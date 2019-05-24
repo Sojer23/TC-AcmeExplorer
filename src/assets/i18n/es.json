@@ -114,8 +114,11 @@
                     "pay": "Pagar",
                     "cancel": "Cancelar",
                     "evaluation": "A la espera de evaluación",
+                    "payment": "A la espera del pago",
                     "bookingCancelled": "Reserva cancelada",
-                    "cancelledReason": "Motivo de cancelación"
+                    "cancelledReason": "Motivo de cancelación",
+                    "reject": "Rechazar",
+                    "accept": "Aceptar"
                 }
             }
         }

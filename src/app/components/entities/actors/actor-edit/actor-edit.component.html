@@ -18,6 +18,25 @@
         <input class="form-control" formControlName="email" type="hidden">
         <input class="form-control" formControlName="password" type="hidden">
 
+
+        <!--Profile Photo-->
+        <img *ngIf="picture != undefined" class="img-circle user" src="{{picture}}">
+        <div  *ngIf="picture === undefined">
+          <img class="img-circle user" src="http://www.propertybazaar.com/content/img/no-user-Image.png">
+        </div>
+        <textarea id="showresult" hidden="false"></textarea>
+
+        <br>
+        <label class="center-block">{{ 'security.registerForm.registerPhoto' | translate }}:</label>
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <mat-icon>camera</mat-icon>
+            </span>
+          </div>
+          <input type="file" class="form-control" name="photo" (change)="onFileChange($event)" formControlName="photo">
+        </div>
+
         <!--Name-->
         <div class="input-group mb-3">
           <div class="input-group-append">
@@ -71,7 +90,7 @@
             </span>
           </div>
           <input type="text" class="form-control" name="address" size="55" formControlName="address"
-            placeholder="{{ 'security.registerForm.registerAddress' | translate }}" required="required">
+            placeholder="{{ 'security.registerForm.registerAddress' | translate }}" #search required="required">
         </div>
         <div *ngIf="profileForm.get('address').errors &&
         profileForm.get('address').touched &&
@@ -79,6 +98,15 @@
           {{'formValidation.string.maxLength' | translate: {maxvalue: profileForm.get('address').errors.maxlength.requiredLength}
         }}
         </div>
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+          (mapClick)="mapClicked($event)">
+          <agm-marker *ngFor="let m of markers; let i=index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label"
+            [markerDraggable]="m.draggable">
+            <agm-info-window><strong>InfoWindow content</strong></agm-info-window>
+          </agm-marker>
+          <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'"
+            [circleDraggable]="true" [editable]="true"></agm-circle>
+        </agm-map>
 
         <!--Preffered Language-->
         <div class="form-group has-danger">
@@ -90,29 +118,13 @@
           </select>
         </div>
 
-        <!--Profile Photo-->
-        <label class="center-block">{{ 'security.registerForm.registerPhoto' | translate }}:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <mat-icon>camera</mat-icon>
-            </span>
-          </div>
-          <input type="file" class="form-control" name="photo" (change)="onFileChange($event)" formControlName="photo">
-        </div>
-        <img *ngIf="picture != null" class="card-img-top img-fluid"
-          style="display:block; object-fit:contain;" src="{{picture}}">
-          <img *ngIf="picture === null" class="card-img-top img-fluid"
-          style="width:50%; display: block; object-fit:contain;" src="http://www.propertybazaar.com/content/img/no-user-Image.png">
-
-          <textarea id="showresult" hidden="true"></textarea>
 
         <div class="form-group d-flex justify-content-center mt-3 login_container">
           <button type="submit" name="button" [disabled]="profileForm.invalid"
             [ngClass]="{'login_btn_error': profileForm.invalid, 'btn': true, 'login_btn': !profileForm.invalid}">{{ 'security.edit' | translate }}</button>
         </div>
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button name="button" (click)="goBack()" class="btn login_btn">{{ 'security.cancel' | translate }}</button>
+          <button name="button" (click)="goBack()" [disabled]="!profileForm.dirty" class="btn login_btn">{{ 'security.cancel' | translate }}</button>
         </div>
       </form>
     </div>

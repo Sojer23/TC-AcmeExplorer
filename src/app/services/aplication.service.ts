@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './auth.service';
 import { Application } from '../models/application.model';
@@ -23,20 +23,24 @@ export class AplicationService {
   constructor(private http: HttpClient,
     authService: AuthService,private router: Router) { }
 
-    postApplication(tripID, explorerId, comment) {
+    postApplication(trip, explorerId, comment) {
 
       return new Promise<any>((res, rej) => {
-        console.log("Posting application with id: " + tripID);
+        console.log("Posting application with id: " + trip['_id']);
   
-        const url = this.applicationsUrl + "/" + tripID;
+        const url = this.applicationsUrl + "/" + trip['_id'];
   
         const application = new Application;
   
-        application.tripId = tripID;
+        application.tripId = trip['_id'];
         application.explorerId = explorerId;
         application.comments = comment;
+        application.managerId = trip.managerID;
+        application.applicationPrice = trip.price;
+        application.applicationDestiny = trip.title;
   
         this.http.post(url, application, httpOptions).toPromise().then((application) => {
+          console.log(application);
           res(application);
         }, err => {
           console.log(err);
@@ -77,6 +81,21 @@ export class AplicationService {
       });
     }
 
+    getManagerApplications(managerId){
+      return new Promise<any>((res, rej) => {
+        console.log("Getting application of manager with id: " + managerId);
+  
+        const url = this.applicationsUrl + "/manager/" + managerId;
+  
+        this.http.get(url, httpOptions).toPromise().then((applications) => {
+          res(applications);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+      });
+    }
+
 
     getAllApplications(){
       return new Promise<any>((res, rej) => {
@@ -85,6 +104,54 @@ export class AplicationService {
         const url = this.applicationsUrl;
 
         this.http.get(url, httpOptions).toPromise().then((application) => {
+          res(application);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+
+      });
+    }
+
+    changeApplicationStatus(applicationId, status){
+      return new Promise<any>((res, rej) => {
+        console.log("Change application status to: "+ status);
+
+        const url = this.applicationsUrl+"/"+applicationId+"/change?status="+status;
+
+        this.http.put(url, httpOptions).toPromise().then((application) => {
+          res(application);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+
+      });
+    }
+
+    cancelApplication(applicationId){
+      return new Promise<any>((res, rej) => {
+        console.log("Cancel application: "+ applicationId);
+
+        const url = this.applicationsUrl+"/"+applicationId+"/cancel";
+
+        this.http.put(url, httpOptions).toPromise().then((application) => {
+          res(application);
+        }, err => {
+          console.log(err);
+          rej(err);
+        });
+
+      });
+    }
+
+    payApplication(applicationId){
+      return new Promise<any>((res, rej) => {
+        console.log("Pay application: "+ applicationId);
+
+        const url = this.applicationsUrl+"/"+applicationId+"/pay";
+
+        this.http.put(url, httpOptions).toPromise().then((application) => {
           res(application);
         }, err => {
           console.log(err);

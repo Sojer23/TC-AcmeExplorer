@@ -51,7 +51,9 @@ export class TripComponent extends TranslatableComponent implements OnInit {
 
 
 
-  applyForATrip(form: NgForm, tripId) {
+  applyForATrip(form: NgForm, trip) {
+
+    console.log(trip);
 
     const comment = form.value.comment;
 
@@ -70,7 +72,7 @@ export class TripComponent extends TranslatableComponent implements OnInit {
     }
 
 
-    this.applicationService.postApplication(tripId, explorerId, comment).then(application => {
+    this.applicationService.postApplication(trip, explorerId, comment).then(application => {
       this.toastr.success("Procedemos a su evaluación", 'Reserva realizada con éxito', {
         timeOut: 3000
       });
