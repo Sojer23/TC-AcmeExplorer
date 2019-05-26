@@ -16,6 +16,7 @@ import { ApplicationListComponent } from './components/entities/aplications/appl
 import { ApplicationComponent } from './components/entities/aplications/application/application.component';
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { DisplayComponent } from './components/entities/display/display.component';
+import { CheckoutComponent } from './components/security/checkout/checkout.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -45,6 +46,9 @@ const appRoutes: Routes = [
             { path: 'display/:id', component: ApplicationComponent },
             { path: '', component: ApplicationListComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'EXPLORER|ADMINISTRATOR|MANAGER' }}
         ]
+    },
+    {
+        path: 'checkout', component: CheckoutComponent, canActivate: [ActorRoleGuard], data:{expectedRole:'EXPLORER'}
     },
     {path:'terms-and-conditions', component: TermsAndConditionsComponent},
     {path:'not-found', component: NotFoundComponent},

@@ -28,7 +28,7 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="name" formControlName="name" placeholder="{{ 'security.registerForm.registerName' | translate }}"
+          <input type="text" class="form-control" name="name" formControlName="name" id="name" placeholder="{{ 'security.registerForm.registerName' | translate }}"
             required="required">
         </div>
         <!--Surname-->
@@ -38,7 +38,7 @@
               <mat-icon>face</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="{{ 'security.registerForm.registerSurname' | translate }}"
+          <input type="text" class="form-control" name="surname" id="surname" formControlName="surname" placeholder="{{ 'security.registerForm.registerSurname' | translate }}"
             required="required">
         </div>
         <!--Email-->
@@ -48,7 +48,7 @@
               <mat-icon>email</mat-icon>
             </span>
           </div>
-          <input type="email" name="email" class="form-control" formControlName="email" placeholder="{{ 'security.registerForm.registerEmail' | translate }}"
+          <input type="email" name="email" class="form-control" id="email" formControlName="email" placeholder="{{ 'security.registerForm.registerEmail' | translate }}"
             required="required">
         </div>
         <!--Phone-->
@@ -58,7 +58,7 @@
               <mat-icon>phone</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="{{ 'security.registerForm.registerPhone' | translate }}"
+          <input type="text" class="form-control" name="phone" id="phone" formControlName="phone" placeholder="{{ 'security.registerForm.registerPhone' | translate }}"
             required="required">
         </div>
 
@@ -69,7 +69,7 @@
               <mat-icon>home</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="address" formControlName="address" placeholder="{{ 'security.registerForm.registerAddress' | translate }}"
+          <input type="text" class="form-control" name="address" id="address" formControlName="address" placeholder="{{ 'security.registerForm.registerAddress' | translate }}"
             required="required">
         </div>
 
@@ -90,7 +90,7 @@
               <mat-icon>vpn_key</mat-icon>
             </span>
           </div>
-          <input type="password" class="form-control" name="password" formControlName="password" placeholder="{{ 'security.registerForm.registerPassword' | translate }}"
+          <input type="password" class="form-control" name="password" id="password" formControlName="password" placeholder="{{ 'security.registerForm.registerPassword' | translate }}"
             required="required">
         </div>
 
@@ -98,7 +98,7 @@
           <label class="checkbox-inline"><input type="checkbox" required="required">{{ 'security.registerForm.registerTerms' | translate }}</label>
         </div>
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button type="submit" name="button" class="btn login_btn">{{ 'security.register' | translate }}</button>
+          <button type="submit" id="register" name="button" class="btn login_btn">{{ 'security.register' | translate }}</button>
         </div>
         <!-- <div class="form-group">
         <button type="submit" class="btn btn-primary btn-success btn-lg btn-block">Register Now</button>

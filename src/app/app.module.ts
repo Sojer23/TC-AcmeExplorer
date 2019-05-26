@@ -41,7 +41,8 @@ import { CookieService} from 'ngx-cookie-service';
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { DisplayComponent } from './components/entities/display/display.component';
 import { AgmCoreModule} from '@agm/core';
-
+import { CheckoutComponent } from './components/security/checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -61,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     AppRoutingModule,
     BarRatingModule,
+    NgxPayPalModule,
     //RouterModule.forRoot([]),
     CommonModule,
     BrowserModule,
@@ -111,7 +113,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApplicationEditComponent,
     NotFoundComponent,
     TermsAndConditionsComponent,
-    DisplayComponent
+    DisplayComponent,
+    CheckoutComponent
   ],
   exports: [
     RouterModule

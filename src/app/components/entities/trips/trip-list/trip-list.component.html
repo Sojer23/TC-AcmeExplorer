@@ -72,7 +72,7 @@
 <div class="container" style="margin-top: 50px; margin-bottom: 100px"
   *ngIf="this.authService.checkRole('EXPLORER|anonymous')">
   <div class="card-columns">
-    <div class="card" *ngFor="let trip of trips; let i = index">
+    <div class="card" *ngFor="let trip of trips; let i = index" id="trips">
       <img class="card-img-top" src='{{trip.mainPicture}}' alt="Bologna">
       <div class="card-body">
         <h4 class="card-title">{{trip.title}}</h4>

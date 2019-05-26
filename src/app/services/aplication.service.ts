@@ -35,7 +35,7 @@ export class AplicationService {
         application.tripId = trip['_id'];
         application.explorerId = explorerId;
         application.comments = comment;
-        application.managerId = trip.managerID;
+        application.managerId = trip.managerId;
         application.applicationPrice = trip.price;
         application.applicationDestiny = trip.title;
   

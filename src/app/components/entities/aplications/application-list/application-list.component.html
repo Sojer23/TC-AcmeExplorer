@@ -57,7 +57,7 @@
         </td>
         <td class="text-right" *ngIf="role == 'EXPLORER'">
           <a class="btn btn-outline-info" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
-            data-original-title="Save to Wishlist"  (click)="payApplication(application['_id'])"> <i class="fa fa-paypal"></i>
+            data-original-title="Save to Wishlist"  [routerLink]="['/checkout']" [queryParams]="{ applicationId: application['_id'], total: application.applicationPrice }"> <i class="fa fa-paypal"></i>
             {{'entities.applications.list.details.pay'| translate}}</a>
           <a class="btn btn-outline-danger btn-round" *ngIf="application.status == 'ACCEPTED' || application.status == 'PENDING'" data-toggle="tooltip"
             data-original-title="Save to Wishlist" (click)="cancelApplication(application['_id'])"> <i class="fa fa-times"></i>
