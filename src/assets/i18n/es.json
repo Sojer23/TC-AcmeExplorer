@@ -28,6 +28,17 @@
             "registerSecondTitle": "¡Crea tu cuenta!",
             "registerThirdTitle": "Es gratis y podrás disfrutar de muchas ofertas"
         },
+        "newTripForm":{
+            "title1": "Crear un nuevo viaje",
+            "title2": "Rellenalo con cuidado",
+            "tripTitle": "Destino",
+            "description": "Descripción",
+            "price": "Precio",
+            "dateInit": "Fecha Inicio",
+            "dateEnd": "Fecha Fin",
+            "mainPicture": "Foto principal del viaje",
+            "button": "Registrar viaje"
+        },
         "edit": "Editar Perfil",
         "cancel": "Cancelar",
         "editProfileForm":{

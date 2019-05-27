@@ -1,4 +1,5 @@
 import {Entity} from './entity.model';
+import { Picture } from './picture.model';
 
 export class Trip extends Entity{
     ticker: string;
@@ -13,6 +14,7 @@ export class Trip extends Entity{
     comments: Comment[];
     totalStars: DoubleRange;
     mainPicture: string;
+    photoObject: Picture;
 }
 
 class Stage {

@@ -28,6 +28,17 @@
             "registerSecondTitle": "Create your account!",
             "registerThirdTitle": "It's free and you can enjoy a lot of deals"
         },
+        "newTripForm":{
+            "title1": "Create a new trip",
+            "title2": "Fill it carefully",
+            "tripTitle": "Destiny",
+            "description": "Description",
+            "price": "Price",
+            "dateInit": "Initial Date",
+            "dateEnd": "End Date",
+            "mainPicture": "Main Trip Picture",
+            "button": "Register Trip"
+        },
         "edit": "Edit Profile",
         "cancel": "Cancel",
         "editProfileForm":{

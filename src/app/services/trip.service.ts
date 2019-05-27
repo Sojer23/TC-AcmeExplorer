@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Trip } from '../models/trip.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,6 +18,28 @@ export class TripService {
 
   private tripsUrl = environment.apiBaseUrl + "/trips";
   constructor(private http: HttpClient) { }
+
+
+  createTrip(trip: Trip){
+    return new Promise<any>((res, rej) => {
+
+      const url = this.tripsUrl;
+
+      const body = JSON.stringify(trip);
+
+      console.log(body);
+
+      //trip.stages = new ;
+
+      this.http.post(url, body, httpOptions).toPromise().then((trip) => {
+        res(trip);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+
+    });
+  }
 
   getTrips() {
     return new Promise<any>((res, rej) => {

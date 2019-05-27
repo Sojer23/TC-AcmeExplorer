@@ -17,6 +17,7 @@ import { ApplicationComponent } from './components/entities/aplications/applicat
 import { TermsAndConditionsComponent } from './components/master/terms-and-conditions/terms-and-conditions.component';
 import { DisplayComponent } from './components/entities/display/display.component';
 import { CheckoutComponent } from './components/security/checkout/checkout.component';
+import { TripPushComponent } from './components/entities/trips/trip-push/trip-push.component';
 
 //Las rutas que no se marguen con el canActivate no necesitan autenticación
 //El role anonymous es para que un usuario que no esté autenticado y haga login no pueda hacer un nuevo registro
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'trips', children: [
+            { path: 'new', component: TripPushComponent, canActivate: [ActorRoleGuard], data: { expectedRole: 'MANAGER' } },
             { path: 'display/:id', component: TripComponent },
             { path: '', component: TripListComponent}
         ]

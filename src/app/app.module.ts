@@ -43,6 +43,8 @@ import { DisplayComponent } from './components/entities/display/display.componen
 import { AgmCoreModule} from '@agm/core';
 import { CheckoutComponent } from './components/security/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { TripPushComponent } from './components/entities/trips/trip-push/trip-push.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAPOOGFZZMbZ5SVUpJ6EKHG0kb9X0bkJyw",
@@ -62,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     AppRoutingModule,
     BarRatingModule,
+    NgbModule,
     NgxPayPalModule,
     //RouterModule.forRoot([]),
     CommonModule,
@@ -114,7 +117,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent,
     TermsAndConditionsComponent,
     DisplayComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    TripPushComponent
   ],
   exports: [
     RouterModule
