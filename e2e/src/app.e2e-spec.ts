@@ -34,14 +34,29 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
   });*/
 
-  it('should register to Acme-Explorer like as EXPLORER', ()=>{
+  /*it('should wrong register to Acme-Explorer by an administrator like as MANAGER', () => {
+    login.navigateTo();
+    browser.sleep(2000);
+    login.fillForm({ 'username': register.admin.email, 'password': register.admin.password });
+    browser.sleep(4000);
+    register.navigateTo();
+    browser.sleep(2000);
+    register.fillForm(register.manager);
+    browser.sleep(2000);
+    expect(register.checkWrongRegister()).toEqual('Contraseña incorrecta');
+    browser.sleep(2000);
+    login.logout();
+  });*/
+
+  it('should register to Acme-Explorer like as EXPLORER', () => {
+    browser.sleep(2000);
     register.navigateTo();
     browser.sleep(2000);
     register.fillForm(register.explorer);
     browser.sleep(2000);
     login.navigateTo();
     browser.sleep(2000);
-    login.fillForm({'username':register.explorer.email, 'password': register.explorer.password});
+    login.fillForm({ 'username': register.explorer.email, 'password': register.explorer.password });
     browser.sleep(2000);
     browser.get('/profile');
     browser.sleep(1000);
@@ -49,18 +64,18 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
   });
 
-  it('should registry an application for a trip published', ()=>{
+  it('should registry an application for a trip published', () => {
     trips.navigateTo();
     browser.sleep(2000);
     trips.clickOnATrip(2);
     browser.sleep(4000);
     trips.fillComment(trips.comment);
-    browser.sleep(2000);    
+    browser.sleep(2000);
     expect(trips.checkApplication(1)).toEqual(trips.comment);
     browser.sleep(2000);
   });
 
-  
+
 
 
 });

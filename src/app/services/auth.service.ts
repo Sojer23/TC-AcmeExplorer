@@ -149,7 +149,7 @@ export class AuthService {
 
       if (actor.password.length < 6) {
         this.toastr.error("Debe contener al menos 6 caracteres", 'Contraseña incorrecta', {
-          timeOut: 3000
+          timeOut: 10000
         });
       }
 
@@ -171,7 +171,6 @@ export class AuthService {
           });
 
           console.log("User saved in Backend!");
-          this.router.navigate(['/login']);
           resolve(res);
 
         }, err => {

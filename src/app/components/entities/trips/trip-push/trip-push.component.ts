@@ -7,6 +7,7 @@ import { TripService } from 'src/app/services/trip.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Picture } from 'src/app/models/picture.model';
 
 @Component({
   selector: 'app-trip-push',
@@ -17,6 +18,7 @@ export class TripPushComponent extends TranslatableComponent implements OnInit {
 
   newTripForm: FormGroup;
 
+  photoChanged = false;
   hoveredDate: NgbDate;
   dateInit: NgbDate;
   dateEnd: NgbDate;
@@ -46,21 +48,29 @@ export class TripPushComponent extends TranslatableComponent implements OnInit {
       dateInit: ['',],
       dateEnd: ['',],
       stages: [[{}], Validators.required],
-      mainPicture: ['']
+      mainPicture: ['', Validators.required]
     });
   }
 
   onRegisterNewTrip() {
 
-    
+    const formModel = this.newTripForm.value;
+
+    if (this.photoChanged) {
+      console.log("Image uplodaded");
+      formModel.photoObject = new Picture();
+      formModel.photoObject.Buffer = document.getElementById('showresult').textContent;
+      formModel.photoObject.contentType = 'image/png';
+    }
+
     const managerId = this.authService.getCurrentActor().id;
 
-    this.newTripForm.value.managerId = managerId;
-    this.newTripForm.value.dateInit = new Date(this.dateInit.year, this.dateInit.month-1, this.dateInit.day);
-    this.newTripForm.value.dateEnd = new Date(this.dateEnd.year, this.dateEnd.month-1, this.dateEnd.day);
-    this.newTripForm.value.stages = [{"title": "Andorra","description": "Hermoso viaje", "price": this.newTripForm.value.price, "dateInit": new Date(this.dateInit.year, this.dateInit.month-1, this.dateInit.day)}];
+    formModel.managerId = managerId;
+    formModel.dateInit = new Date(this.dateInit.year, this.dateInit.month-1, this.dateInit.day);
+    formModel.dateEnd = new Date(this.dateEnd.year, this.dateEnd.month-1, this.dateEnd.day);
+    formModel.stages = [{"title": "Andorra","description": "Hermoso viaje", "price": formModel.price, "dateInit": new Date(this.dateInit.year, this.dateInit.month-1, this.dateInit.day)}];
 
-    this.tripService.createTrip(this.newTripForm.value).then(res => {
+    this.tripService.createTrip(formModel).then(res => {
       console.log("Redirecting to trips...");
       this.router.navigate(['/trips']);
     }, err => {
@@ -72,6 +82,7 @@ export class TripPushComponent extends TranslatableComponent implements OnInit {
     const reader = new FileReader();
     const showout = document.getElementById('showresult');
     let res;
+    this.photoChanged = true;
 
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;

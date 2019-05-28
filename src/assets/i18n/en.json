@@ -84,7 +84,8 @@
                     "status": "Status",
                     "evaluation": "Evaluation",
                     "price": "Price",
-                    "actions": "Acctions"
+                    "actions": "Acctions",
+                    "cancelReason": "Cancel Reason"
                 }
             },
             "details":{

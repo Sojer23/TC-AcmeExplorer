@@ -55,7 +55,7 @@
         <td>
           <var class="price">{{application.status}}</var>
         </td>
-        <td class="text-right" *ngIf="role == 'EXPLORER'">
+        <td class="text-right" *ngIf="this.authService.checkRole('EXPLORER')">
           <a class="btn btn-outline-info" *ngIf="application.status == 'DUE'" data-toggle="tooltip"
             data-original-title="Save to Wishlist"  [routerLink]="['/checkout']" [queryParams]="{ applicationId: application['_id'], total: application.applicationPrice }"> <i class="fa fa-paypal"></i>
             {{'entities.applications.list.details.pay'| translate}}</a>
@@ -69,7 +69,7 @@
             {{'entities.applications.list.details.cancelledReason'| translate}}</p>
           <p class="danger" *ngIf="application.status == 'CANCELLED'">{{application.rejectionComment}}</p>
         </td>
-        <td class="text-right" *ngIf="role == 'ADMINISTRATOR' || role == 'MANAGER'">
+        <td class="text-right" *ngIf="this.authService.checkRole('ADMINISTRATOR') || this.authService.checkRole('MANAGER')">
           <a class="btn btn-outline-success" *ngIf="application.status == 'PENDING'" data-toggle="tooltip"
             data-original-title="Save to Wishlist" (click)="acceptOrCancelApplication(application['_id'], 'DUE')"> <i class="fa fa-check-circle"></i>
             {{'entities.applications.list.details.accept'| translate}}</a>

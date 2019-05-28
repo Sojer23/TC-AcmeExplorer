@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TranslatableComponent } from '../../shared/translatable/translatable.component';
 import { TranslateService } from '@ngx-translate/core';

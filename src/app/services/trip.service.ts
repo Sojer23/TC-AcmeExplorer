@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Trip } from '../models/trip.model';
+import { ToastrService } from 'ngx-toastr';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,8 @@ export class TripService {
   public trips = [];
 
   private tripsUrl = environment.apiBaseUrl + "/trips";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private toastr: ToastrService) { }
 
 
   createTrip(trip: Trip){
@@ -111,6 +113,79 @@ export class TripService {
       }, err => {
         console.log(err);
         rej(err);
+      });
+    });
+  }
+
+  updateTrip(trip: Trip){
+    return new Promise<any>((res,rej)=>{
+
+      const body = JSON.stringify(trip);
+      const url = this.tripsUrl+"/"+trip['_id'];
+
+      this.http.put(url,body, httpOptions).toPromise().then((tripUpdated)=>{
+        res(tripUpdated);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+    });
+  }
+
+  publishTrip(trip){
+    return new Promise<any>((res,rej)=>{
+
+      const tripId = trip['_id'];
+
+      console.log("Publishing trip: "+ tripId);
+      const url = this.tripsUrl+"/"+tripId+"/publish";
+
+      this.http.put(url, httpOptions).toPromise().then((tripUpdated)=>{
+        res(tripUpdated);
+      }, err => {
+        console.log(err);
+        rej(err);
+      });
+    });
+  }
+
+  cancelATrip(trip, cancelComment){
+    return new Promise<any>((res,rej)=>{
+
+      console.log("Cancelling trip: "+ trip['_id']);
+      const url = this.tripsUrl+"/"+trip['_id']+"/cancel";
+      const body = {cancelledReason: cancelComment};
+
+      this.http.put(url, body, httpOptions).toPromise().then((tripCancelled)=>{
+        res(tripCancelled);
+      }, err => {
+        if(err.status === 422){
+          this.toastr.info("Introducir el motivo de cancelación", "No se ha podido cancelar");
+        }else{
+          console.log(err);
+          rej(err);
+        }
+        
+      });
+    });
+  }
+
+  deleteTrip(trip){
+    return new Promise<any>((res,rej)=>{
+
+      console.log("Deleting trip: "+ trip['_id']);
+      const url = this.tripsUrl+"/"+trip['_id'];
+
+      this.http.delete(url, httpOptions).toPromise().then((result)=>{
+        res();
+      }, err => {
+        if(err.status === 422){
+          this.toastr.info("Introducir el motivo de cancelación", "No se ha podido cancelar");
+        }else{
+          console.log(err);
+          rej(err);
+        }
+        
       });
     });
   }

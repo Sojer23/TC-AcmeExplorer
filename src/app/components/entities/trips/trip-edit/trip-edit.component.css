@@ -1,0 +1,111 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.register_card {
+    height: 100%;
+    width: 550px;
+    margin-top: auto;
+    margin-bottom: 100px;
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.brand_logo_container {
+    height: 150px;
+    width: 150px;
+    top: -75px;
+    border-radius: 50%;
+    background: #232f3e;
+    padding: 10px;
+    text-align: center;
+}
+.brand_logo {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.login_btn_error {
+    width: 100%;
+    background: #d64316 !important;
+    color: white !important;
+}
+
+.login_btn {
+    width: 100%;
+    background: #febd69 !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #febd69 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #febd69 !important;
+}
+
+
+agm-map{
+    height: 300px;
+}
+
+a{
+    color: darkcyan;
+}
+
+.user {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border-color:  #232f3e;
+  
+    object-fit: cover;
+  }
+
+
+
+  /*DATEPICKER CSS*/
+
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }

@@ -22,6 +22,8 @@ export class TripListComponent extends TranslatableComponent implements OnDestro
   // thus we ensure the data is fetched before rendering
   //dtTrigger: Subject<any> = new Subject();
   trips = [];
+  cancelTripVar: boolean;
+  picture: string;
 
 
   constructor(private translateService: TranslateService,
@@ -41,6 +43,7 @@ export class TripListComponent extends TranslatableComponent implements OnDestro
 
   ngOnInit() {
 
+    this.cancelTripVar = false;
     if (this.tripService.trips.length == 0) {
 
       if (this.authService.checkRole("MANAGER")) {
@@ -69,6 +72,9 @@ export class TripListComponent extends TranslatableComponent implements OnDestro
               trips.forEach(trip => {
                 if (trip.status == "PUBLISHED") {
                   this.trips.push(trip);
+                  if(!trip.photoObject){
+                    this.picture = "http://staging1.lebanesefeast.com.au/wp-content/uploads/2018/10/picture-not-available.jpg";
+                  }
                 } else {
                   //this.trips = [];
                 }
@@ -94,6 +100,32 @@ export class TripListComponent extends TranslatableComponent implements OnDestro
   showToast(id) {
     this.toastr.error(id, 'Contraseña incorrecta', {
       timeOut: 3000
+    });
+  }
+
+  publishTrip(trip){
+
+    this.tripService.publishTrip(trip).then((tripPublished)=>{
+      console.log("Published: "+tripPublished.title);
+      this.ngOnInit();
+    });
+  }
+
+  cancelATrip(form: NgForm, trip){
+
+    const cancelComment = form.value.comment;
+
+    this.tripService.cancelATrip(trip, cancelComment).then((tripCancelled)=>{
+      console.log("Cancelled: "+tripCancelled.title);
+      this.ngOnInit();
+    });
+  }
+
+  deleteTrip(trip){
+
+    this.tripService.deleteTrip(trip).then((res)=>{
+      console.log("Trip deleted: "+ trip['_id']);
+      this.ngOnInit();
     });
   }
 

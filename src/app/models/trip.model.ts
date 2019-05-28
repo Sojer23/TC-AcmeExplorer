@@ -2,6 +2,7 @@ import {Entity} from './entity.model';
 import { Picture } from './picture.model';
 
 export class Trip extends Entity{
+    status: string;
     ticker: string;
     title: string;
     description: string;

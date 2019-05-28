@@ -60,7 +60,11 @@ export class RegisterComponent extends TranslatableComponent implements OnInit {
   onRegister() {
     this.authService.registerUser(this.registrationForm.value).then(res => {
       console.log("Redirecting to login...");
-      this.router.navigate(['/login']);
+      if(this.currentActor.role != "ADMINISTRATOR"){
+        this.router.navigate(['/login']);
+      }else{
+        this.router.navigate(['/profile']);
+      }
     }, err => {
       console.log(err);
     });

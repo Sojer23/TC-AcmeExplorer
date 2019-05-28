@@ -40,6 +40,12 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpLoaderFactory, firebaseConfig } from 'src/app/app.module';
+import { DisplayComponent } from '../../display/display.component';
+import { CheckoutComponent } from 'src/app/components/security/checkout/checkout.component';
+import { TripPushComponent } from '../trip-push/trip-push.component';
+import { AgmCoreModule } from '@agm/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -72,12 +78,18 @@ fdescribe('TripListComponent', () => {
       imports: [
         AppRoutingModule,
         BarRatingModule,
+        NgbModule,
+        NgxPayPalModule,
         //RouterModule.forRoot([]),
         CommonModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,
         HttpModule,
+        AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyBdS9obJfDQjOa7jF8_4McmGxIIgPyknzA',
+          libraries: ['places']
+        }),
         ReactiveFormsModule,
         DataTablesModule,
         InfiniteScrollModule,
@@ -117,7 +129,10 @@ fdescribe('TripListComponent', () => {
         ApplicationListComponent,
         ApplicationEditComponent,
         NotFoundComponent,
-        TermsAndConditionsComponent
+        TermsAndConditionsComponent,
+        DisplayComponent,
+        CheckoutComponent,
+        TripPushComponent
       ],
       // exports: [
       //   RouterModule
@@ -140,11 +155,11 @@ fdescribe('TripListComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('Component TripListComponent should be created', () => {
+  fit('TripListComponent should be created', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('Should show only 3 trips published', async (done) => {
+  fit('Should show only 6 trips published', async (done) => {
     expect(component.trips.length).toEqual(0);
     component.ngOnInit();
     fixture.detectChanges();
@@ -152,12 +167,12 @@ fdescribe('TripListComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.trips.length).toEqual(3);
+      expect(component.trips.length).toEqual(6);
       done();
     });
   });
 
-  fit('All publish trips price greater than 40', async (done) => {
+  fit('All publish trips price greater than 10', async (done) => {
     expect(component.trips.length).toEqual(0);
     component.ngOnInit();
     fixture.detectChanges();
@@ -168,7 +183,7 @@ fdescribe('TripListComponent', () => {
 
       expect(component.trips.forEach((trip) => {
         console.log("Viaje a: "+trip.title+" - Precio: "+ trip.price);
-          expect(trip.price).toBeGreaterThan(40);
+          expect(trip.price).toBeGreaterThan(10);
           done();
       }));
 

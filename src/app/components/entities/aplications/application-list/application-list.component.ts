@@ -13,7 +13,7 @@ import { Actor } from 'src/app/models/actor.model';
 export class ApplicationListComponent implements OnInit {
 
   applications = [];
-  role: string;
+  public role: string;
 
   constructor(private authService: AuthService,
     private applicationService: AplicationService,
@@ -24,7 +24,7 @@ export class ApplicationListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.role = this.authService.getCurrentActor().role;
+    //this.role = this.authService.getCurrentActor().role;
     if (this.authService.checkRole('EXPLORER')) {
       this.applications = [];
       this.applicationService.getExplorerApplications(this.authService.getCurrentActor().id).then((applications) => {
@@ -32,6 +32,7 @@ export class ApplicationListComponent implements OnInit {
         applications.forEach(application => {
           if(application.status != "CANCELLED"){
             this.applications.push(application);
+            this.applications.slice().reverse();
           }
         });
       });
@@ -40,7 +41,7 @@ export class ApplicationListComponent implements OnInit {
       if(this.authService.checkRole('ADMINISTRATOR')){
         this.applications = [];
       
-      this.applicationService.getAllApplications().then(applications => {
+        this.applicationService.getAllApplications().then(applications => {
 
         console.log("Showing " + applications.length + " applications.");
 

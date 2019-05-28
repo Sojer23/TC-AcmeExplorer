@@ -20,6 +20,7 @@ export class TripComponent extends TranslatableComponent implements OnInit {
   tripId: string;
   starArray: boolean[];
   apply: boolean;
+  picture: string;
 
 
   constructor(private route: ActivatedRoute,
@@ -43,8 +44,10 @@ export class TripComponent extends TranslatableComponent implements OnInit {
 
     //Recover the item
     this.tripService.getTrip(this.tripId).then((trip) => {
-      console.log("Showing trip with destiny: " + trip.title);
       this.trip = trip;
+      if(!this.trip.photoObject){
+        this.picture = trip.photoObject.Buffer;
+      }
     })
 
   }

@@ -22,7 +22,24 @@
     }
 }
 
+.mat-button.mat-primary .mat-button-focus-overlay {
+    background-color: transparent;
+  }
 
+.login_btn {
+    width: 100%;
+    background: #febd69 !important;
+    color: 232f3e !important;
+}
+
+.action_btn {
+    background: #232f3e !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
 
 /*SEARCH INPUT CSS*/
 

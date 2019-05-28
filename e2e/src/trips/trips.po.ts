@@ -2,7 +2,7 @@ import { browser, element, by } from "protractor";
 
 
 export class TripsPage {
-    public comment = "Quiero estar en Touluse varios días.";
+    public comment = "Quiero estar en Madrid varios días.";
     public trip = "Touluse";
     private tripId = "5c97c4caf0b1c134a85a8972";
 
@@ -13,9 +13,10 @@ export class TripsPage {
 
     clickOnATrip(tripIndex:number) {
 
+        //body > app-root > div > div > div > app-trip-list > div:nth-child(2) > div > div:nth-child(1) > div.bottom-wrap > a
         const start ='body > app-root > div > div > div > app-trip-list > div:nth-child(';
         const end= ') > div';
-        const tripButton = ' > #trips > div.bottom-wrap > a';
+        const tripButton = ' > div:nth-child(1) > div.bottom-wrap > a';
         let selector = start.concat(tripIndex.toString());
         selector = selector.concat(end);
 

@@ -24,4 +24,13 @@ export class LoginPage{
         const selector= 'body > app-root > div > div > div > app-actor > div > form > div:nth-child(1) > div.col-md-6 > div > h6'; 
         return element(by.css(selector)).getText();
     }
+
+    logout(){
+        const buttonSelector0 = 'body > app-root > app-header > header > nav';
+        const buttonSelector1 = ' > #navbarSupportedContent > ul:nth-child(5) > li.nav-item.dropdown.show > a > img'
+        const buttonLogoutselector = buttonSelector0.concat(buttonSelector1);
+        element(by.css(buttonLogoutselector)).click();
+        const buttonSelector2 = ' > li.nav-item.dropdown.ng-star-inserted.show > ul > li.nav-item.ng-star-inserted > a'
+        element(by.css(buttonSelector2)).click();
+    }
 }

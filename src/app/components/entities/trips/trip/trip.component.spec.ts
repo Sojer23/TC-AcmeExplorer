@@ -40,6 +40,12 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpLoaderFactory, firebaseConfig } from 'src/app/app.module';
 import { TripListComponent } from '../trip-list/trip-list.component';
+import { AgmCoreModule } from '@agm/core';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DisplayComponent } from '../../display/display.component';
+import { CheckoutComponent } from 'src/app/components/security/checkout/checkout.component';
+import { TripPushComponent } from '../trip-push/trip-push.component';
 
 
 @Injectable()
@@ -71,12 +77,18 @@ fdescribe('TripComponent', () => {
       imports: [
         AppRoutingModule,
         BarRatingModule,
+        NgbModule,
+        NgxPayPalModule,
         //RouterModule.forRoot([]),
         CommonModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,
         HttpModule,
+        AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyBdS9obJfDQjOa7jF8_4McmGxIIgPyknzA',
+          libraries: ['places']
+        }),
         ReactiveFormsModule,
         DataTablesModule,
         InfiniteScrollModule,
@@ -116,7 +128,10 @@ fdescribe('TripComponent', () => {
         ApplicationListComponent,
         ApplicationEditComponent,
         NotFoundComponent,
-        TermsAndConditionsComponent
+        TermsAndConditionsComponent,
+        DisplayComponent,
+        CheckoutComponent,
+        TripPushComponent
       ],
       // exports: [
       //   RouterModule
@@ -132,7 +147,7 @@ fdescribe('TripComponent', () => {
     fixture = TestBed.createComponent(TripComponent);
     component = fixture.componentInstance;
 
-    mockActivatedRoute.testParams = { id: '5c97c4caf0b1c134a85a8975' };
+    mockActivatedRoute.testParams = { id: '5c97c4caf0b1c134a85a8972' };
 
     tripService = TestBed.get(TripService);
 
@@ -140,23 +155,23 @@ fdescribe('TripComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('Component TripComponent should be createdshould create', () => {
+  fit('TripComponent should be created should create', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('Should have prive greater than 530', async (done) => {
+  fit('Should have price greater than 530', async (done) => {
     component.ngOnInit();
     fixture.detectChanges();
     spyOn(tripService, 'getTrip').and.returnValue(Promise.resolve(true));
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.trip.price).toBeGreaterThan(530);
+      expect(component.trip.price).toBeGreaterThan(130);
       done();
     });
   });
 
-  fit('Should have third stage with name Barcelona', async (done) => {
+  fit('Should have first stage with name Andorra', async (done) => {
     component.ngOnInit();
     fixture.detectChanges();
     spyOn(tripService, 'getTrip').and.returnValue(Promise.resolve(true));
@@ -164,13 +179,13 @@ fdescribe('TripComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      expect(component.trip.stages[2].title).toEqual('Barcelona');
+      expect(component.trip.stages[0].title).toEqual('Andorra');
       done();
 
     });
   });
 
-  fit('Should have more than 3 stars', async (done) => {
+  fit('Should have more than 2 stars', async (done) => {
     component.ngOnInit();
     fixture.detectChanges();
     spyOn(tripService, 'getTrip').and.returnValue(Promise.resolve(true));
@@ -178,7 +193,7 @@ fdescribe('TripComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      expect(component.trip.totalStars).toBeGreaterThan(3);
+      expect(component.trip.totalStars).toBeGreaterThan(2);
       done();
 
     });

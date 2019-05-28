@@ -84,7 +84,8 @@
                     "price": "Precio",
                     "status": "Estado",
                     "evaluation": "Valoración",
-                    "actions": "Acciones"
+                    "actions": "Acciones",
+                    "cancelReason": "Motivo de cancelación"
                 }
             },
             "details":{

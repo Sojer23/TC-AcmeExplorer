@@ -26,6 +26,11 @@
           <input type="text" class="form-control" name="title" formControlName="title" id="title"
             placeholder="{{ 'security.newTripForm.tripTitle' | translate }}" required="required">
         </div>
+        <div *ngIf="newTripForm.get('title').errors &&
+        newTripForm.get('title').touched &&
+        newTripForm.get('title').errors.required" class="text-danger">
+          {{'formValidation.fieldRequired' | translate}}
+        </div>
         <!--Description-->
         <div class="input-group mb-3">
           <div class="input-group-append">
@@ -36,6 +41,11 @@
           <input type="text" class="form-control" name="description" id="description" formControlName="description"
             placeholder="{{ 'security.newTripForm.description' | translate }}" required="required">
         </div>
+        <div *ngIf="newTripForm.get('description').errors &&
+        newTripForm.get('description').touched &&
+        newTripForm.get('description').errors.required" class="text-danger">
+          {{'formValidation.fieldRequired' | translate}}
+        </div>
         <!--Price-->
         <div class="input-group mb-3">
           <div class="input-group-append">
@@ -43,8 +53,13 @@
               <mat-icon>attach_money</mat-icon>
             </span>
           </div>
-          <input type="text" class="form-control" name="price" id="price" formControlName="price"
+          <input type="number" class="form-control" name="price" id="price" formControlName="price"
             placeholder="{{ 'security.newTripForm.price' | translate }}" required="required" min="0" max="99999">
+        </div>
+        <div *ngIf="newTripForm.get('price').errors &&
+        newTripForm.get('price').touched &&
+        newTripForm.get('price').errors.pattern" class="text-danger">
+          {{'formValidation.pattern.numeric' | translate}}
         </div>
 
 
@@ -61,34 +76,6 @@
         </ng-template>
 
         <hr>
-
-        <!--DateInit-->
-        <br>
-        <label class="center-block">{{ 'security.newTripForm.dateInit' | translate }}:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <mat-icon>date_range</mat-icon>
-            </span>
-          </div>
-          <input type='date' class="form-control" value="{{dateInit.day}}-{{dateInit.month}}-{{dateInit.year}}" name="dateInit" id="dateInit"
-            formControlName="dateInit"  required="required" />
-
-        </div>
-
-        <!--DateEnd-->
-        <br>
-        <label class="center-block">{{ 'security.newTripForm.dateEnd' | translate }}:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <mat-icon>date_range</mat-icon>
-            </span>
-          </div>
-          <input type='date' value="{{dateEnd.day}}-{{dateEnd.month}}-{{dateEnd.year}}" class="form-control" name="dateEnd" id="dateEnd"
-            formControlName="dateEnd"  required="required" />
-        </div>
-
 
         <!--Profile Photo-->
         <!-- <img *ngIf="picture != undefined" class="img-circle user" src="{{picture}}">
@@ -108,8 +95,15 @@
           <input type="file" class="form-control" name="mainPicture" (change)="onFileChange($event)"
             formControlName="mainPicture">
         </div>
+        <div *ngIf="newTripForm.get('mainPicture').errors &&
+        newTripForm.get('mainPicture').touched &&
+        newTripForm.get('mainPicture').errors.required" class="text-danger">
+          {{'formValidation.fieldRequired' | translate}}
+        </div>
+
         <div class="form-group d-flex justify-content-center mt-3 login_container">
-          <button type="submit" id="register" name="button" >{{ 'security.newTripForm.button' | translate }}</button>
+          <button type="submit" id="register" name="button" [disabled]="newTripForm.invalid"
+            [ngClass]="{'login_btn_error': newTripForm.invalid, 'btn': true, 'login_btn': !newTripForm.invalid}">{{ 'security.newTripForm.button' | translate }}</button>
         </div>
       </form>
     </div>
